@@ -7,84 +7,65 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --navy:#0A1628;
-  --navy2:#111f3a;
-  --orange:#F97316;
-  --orange2:#ea6a0a;
-  --white:#ffffff;
-  --gray:#f4f5f7;
-  --gray2:#e8eaed;
-  --muted:#6b7280;
-  --text:#1a2332;
-  --border:#dde1e8;
-}
+:root{--navy:#0A1628;--navy2:#111f3a;--orange:#F97316;--orange2:#ea6a0a;--white:#ffffff;--gray:#f4f5f7;--gray2:#e8eaed;--muted:#6b7280;--text:#1a2332;--border:#dde1e8;}
 html{scroll-behavior:smooth}
 body{font-family:'Barlow',sans-serif;color:var(--text);background:var(--white);line-height:1.6}
 a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
-
-/* NAV */
 nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
-.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.6rem;color:var(--white);letter-spacing:.5px}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.6rem;color:var(--white)}
 .nav-logo span{color:var(--orange)}
 .nav-links{display:flex;gap:2rem;align-items:center}
 .nav-links a{color:rgba(255,255,255,.75);font-size:.9rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--white)}
-.nav-cta{background:var(--orange);color:var(--white)!important;padding:.45rem 1.2rem;border-radius:6px;font-weight:600!important;transition:background .2s!important}
+.nav-cta{background:var(--orange);color:var(--white)!important;padding:.45rem 1.2rem;border-radius:6px;font-weight:600!important}
 .nav-cta:hover{background:var(--orange2)!important}
-
-/* HERO */
 .hero{background:var(--navy);padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 120%,rgba(249,115,22,.18) 0%,transparent 70%);pointer-events:none}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 120%,rgba(249,115,22,.18),transparent 70%);pointer-events:none}
 .hero-badge{display:inline-block;background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.4);color:var(--orange);font-size:.78rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:.35rem 1rem;border-radius:99px;margin-bottom:1.5rem}
-.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.8rem,7vw,5rem);color:var(--white);line-height:1.05;margin-bottom:1rem;letter-spacing:-.5px}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.8rem,7vw,5rem);color:var(--white);line-height:1.05;margin-bottom:1rem}
 .hero h1 span{color:var(--orange)}
 .hero p{color:rgba(255,255,255,.65);font-size:1.1rem;max-width:520px;margin:0 auto 2.5rem}
-
-/* SEARCH BOX */
-.search-box{background:var(--white);border-radius:14px;padding:1.5rem;max-width:820px;margin:0 auto;box-shadow:0 25px 60px rgba(0,0,0,.4)}
+.search-box{background:var(--white);border-radius:14px;padding:1.5rem;max-width:860px;margin:0 auto;box-shadow:0 25px 60px rgba(0,0,0,.4)}
 .search-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.75rem;margin-bottom:.75rem}
-.search-row select,.search-row input{width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-family:'Barlow',sans-serif;font-size:.9rem;color:var(--text);background:var(--white);appearance:none;-webkit-appearance:none;cursor:pointer;transition:border .2s}
-.search-row select:focus,.search-row input:focus{outline:none;border-color:var(--orange)}
-.search-row2{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:.75rem;align-items:end}
-.search-btn{background:var(--orange);color:var(--white);border:none;padding:.65rem 2rem;border-radius:8px;font-family:'Barlow',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s}
+.search-row2{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+.search-row3{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.search-box select{width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-family:'Barlow',sans-serif;font-size:.9rem;color:var(--text);background:var(--white);appearance:none;cursor:pointer;transition:border .2s}
+.search-box select:focus{outline:none;border-color:var(--orange)}
+.search-hint{font-size:.82rem;color:var(--muted)}
+.search-btn{background:var(--orange);color:var(--white);border:none;padding:.65rem 2.5rem;border-radius:8px;font-family:'Barlow',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s}
 .search-btn:hover{background:var(--orange2)}
-
-/* STATS BAR */
-.stats{background:var(--gray);border-bottom:1px solid var(--border);padding:1.2rem 2rem;display:flex;justify-content:center;gap:4rem}
+.stats{background:var(--gray);border-bottom:1px solid var(--border);padding:1.2rem 2rem;display:flex;justify-content:center;gap:4rem;flex-wrap:wrap}
 .stat{text-align:center}
 .stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.6rem;color:var(--navy);line-height:1}
 .stat-label{font-size:.8rem;color:var(--muted);font-weight:500;margin-top:2px}
-
-/* SECTIONS */
 section{padding:4rem 2rem}
-.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2rem}
-.section-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2rem;color:var(--navy)}
-.section-header a{font-size:.9rem;color:var(--orange);font-weight:600}
-.section-header a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto}
-
-/* CAR CARDS */
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.5rem}
+.section-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2rem;color:var(--navy)}
+.section-header a{font-size:.9rem;color:var(--orange);font-weight:600;cursor:pointer}
+.results-count{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem}
+.results-count span{font-weight:600;color:var(--navy)}
 .cars-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
 .car-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer}
 .car-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
-.car-img{height:185px;background:var(--gray2);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.car-img-bg{width:100%;height:100%;object-fit:cover}
-.car-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-.car-badge{position:absolute;top:10px;left:10px;background:var(--navy);color:var(--white);font-size:.7rem;font-weight:600;padding:.25rem .6rem;border-radius:4px;letter-spacing:.5px}
-.car-badge.new{background:var(--orange)}
+.car-img{height:190px;overflow:hidden;position:relative;background:linear-gradient(135deg,#1a2a4a,#2d4a7a)}
+.car-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s;display:block}
+.car-card:hover .car-img img{transform:scale(1.04)}
+.car-badge{position:absolute;top:10px;left:10px;background:var(--navy);color:var(--white);font-size:.7rem;font-weight:600;padding:.25rem .65rem;border-radius:4px;letter-spacing:.5px}
+.car-badge.hot{background:var(--orange)}
 .car-info{padding:1rem}
 .car-price{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.5rem;color:var(--orange);margin-bottom:.2rem}
 .car-name{font-weight:600;font-size:1rem;color:var(--navy);margin-bottom:.5rem}
-.car-specs{display:flex;gap:.75rem;flex-wrap:wrap}
-.car-spec{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:3px}
+.car-specs{display:flex;gap:.6rem;flex-wrap:wrap}
+.car-spec{font-size:.78rem;color:var(--muted)}
 .car-footer{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-top:1px solid var(--border);background:var(--gray)}
 .car-dealer{font-size:.78rem;color:var(--muted);font-weight:500}
 .car-contact{background:var(--navy);color:var(--white);font-size:.78rem;font-weight:600;padding:.3rem .85rem;border-radius:5px;border:none;cursor:pointer;transition:background .2s}
 .car-contact:hover{background:var(--orange)}
-
-/* DEALER CARDS */
+.no-results{text-align:center;padding:4rem 2rem;grid-column:1/-1}
+.no-results h3{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;color:var(--navy);margin-bottom:.5rem}
+.no-results p{color:var(--muted);margin-bottom:1.5rem}
+.no-results button{background:var(--orange);color:var(--white);border:none;padding:.65rem 1.5rem;border-radius:8px;font-family:'Barlow',sans-serif;font-weight:600;cursor:pointer}
 .dealers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
 .dealer-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:box-shadow .2s;cursor:pointer}
 .dealer-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08)}
@@ -92,72 +73,50 @@ section{padding:4rem 2rem}
 .dealer-avatar{width:46px;height:46px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--white);flex-shrink:0}
 .dealer-name{font-weight:600;font-size:.95rem;color:var(--navy)}
 .dealer-addr{font-size:.78rem;color:var(--muted);margin-top:1px}
-.dealer-stats{display:flex;gap:1rem;margin-bottom:1rem}
-.d-stat{display:flex;flex-direction:column}
-.d-stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:var(--navy)}
-.d-stat-label{font-size:.72rem;color:var(--muted)}
-.dealer-stars{color:var(--orange);font-size:.85rem;letter-spacing:1px}
-.dealer-badge{display:inline-block;font-size:.7rem;font-weight:600;padding:.2rem .6rem;border-radius:4px;margin-top:.5rem}
+.dealer-stats{display:flex;gap:1.5rem;margin-bottom:1rem}
+.d-stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:var(--navy);display:block}
+.d-stat-label{font-size:.72rem;color:var(--muted);display:block}
+.dealer-badge{display:inline-block;font-size:.7rem;font-weight:600;padding:.2rem .65rem;border-radius:4px}
 .dealer-badge.verified{background:#dcfce7;color:#166534}
 .dealer-badge.trial{background:#fef9c3;color:#854d0e}
-
-/* WHY SECTION */
 .why{background:var(--navy);color:var(--white)}
 .why h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2.4rem;color:var(--white);margin-bottom:.5rem}
 .why p.sub{color:rgba(255,255,255,.6);margin-bottom:3rem;font-size:1.05rem}
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
 .why-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.5rem}
-.why-icon{width:42px;height:42px;background:rgba(249,115,22,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem}
-.why-card h3{font-weight:600;font-size:1rem;color:var(--white);margin-bottom:.4rem}
+.why-icon{width:42px;height:42px;background:rgba(249,115,22,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.3rem}
+.why-card h3{font-weight:600;color:var(--white);margin-bottom:.4rem}
 .why-card p{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.6}
-
-/* NOTIFY */
 .notify{background:var(--orange);padding:3.5rem 2rem;text-align:center}
 .notify h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.2rem;color:var(--white);margin-bottom:.5rem}
 .notify p{color:rgba(255,255,255,.85);margin-bottom:1.5rem}
-.notify-form{display:flex;gap:.75rem;max-width:460px;margin:0 auto;justify-content:center}
+.notify-form{display:flex;gap:.75rem;max-width:460px;margin:0 auto}
 .notify-form input{flex:1;padding:.65rem 1rem;border:none;border-radius:8px;font-family:'Barlow',sans-serif;font-size:.95rem}
-.notify-form input:focus{outline:none}
 .notify-form button{background:var(--navy);color:var(--white);border:none;padding:.65rem 1.4rem;border-radius:8px;font-family:'Barlow',sans-serif;font-weight:600;cursor:pointer;white-space:nowrap}
-
-/* FOOTER */
 footer{background:var(--navy2);color:rgba(255,255,255,.5);padding:2.5rem 2rem;text-align:center;font-size:.85rem}
 footer strong{color:rgba(255,255,255,.85);font-family:'Barlow Condensed',sans-serif;font-size:1.1rem}
 .footer-links{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
 .footer-links a{color:rgba(255,255,255,.45);transition:color .2s}
 .footer-links a:hover{color:var(--white)}
-
-/* RESPONSIVE */
-@media(max-width:680px){
-  .search-row,.search-row2{grid-template-columns:1fr 1fr}
-  .search-btn{grid-column:1/-1}
-  .stats{gap:1.5rem;flex-wrap:wrap}
-  .nav-links{display:none}
-}
-
-/* CAR SVG PLACEHOLDERS */
-.car-silhouette{opacity:.18}
+@media(max-width:680px){.search-row,.search-row2{grid-template-columns:1fr 1fr}.search-row3{flex-direction:column;align-items:stretch}.search-btn{width:100%}.stats{gap:1.5rem}.nav-links{display:none}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">RGV<span>Autos</span></div>
   <div class="nav-links">
     <a href="#listings">Browse Cars</a>
     <a href="#dealers">Dealers</a>
-    <a href="#">Sell My Car</a>
-    <a href="#" class="nav-cta">List Your Lot</a>
+    <a href="list-your-lot.html">For Dealers</a>
+    <a href="list-your-lot.html" class="nav-cta">List Your Lot</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-badge">&#127968; Serving Brownsville &amp; the Rio Grande Valley</div>
   <h1>Find Your Next Car<br/><span>Right Here in the Valley</span></h1>
-  <p>Browse hundreds of local used cars from trusted RGV dealerships — all in one place.</p>
-
+  <p>Browse local used cars from trusted RGV dealerships — all in one place.</p>
   <div class="search-box">
     <div class="search-row">
       <select id="make-select" onchange="updateModels()"><option value="">Any Make</option><option>Toyota</option><option>Honda</option><option>Chevrolet</option><option>Ford</option><option>Nissan</option><option>Dodge</option><option>Jeep</option><option>Hyundai</option><option>Kia</option><option>GMC</option><option>RAM</option><option>Mazda</option><option>Subaru</option><option>Volkswagen</option><option>BMW</option><option>Mercedes-Benz</option><option>Lexus</option><option>Acura</option><option>Mitsubishi</option><option>Chrysler</option><option>Buick</option><option>Cadillac</option><option>Lincoln</option></select>
@@ -165,336 +124,204 @@ footer strong{color:rgba(255,255,255,.85);font-family:'Barlow Condensed',sans-se
       <select id="year-min"><option value="">From Year</option></select>
       <select id="year-max"><option value="">To Year</option></select>
     </div>
-    <div class="search-row">
-      <select id="body-select"><option value="">Body Style</option></select>
-    </div>
     <div class="search-row2">
-      <select><option value="">Min Price</option><option>$3,000</option><option>$5,000</option><option>$8,000</option><option>$10,000</option><option>$15,000</option></select>
-      <select><option value="">Max Price</option><option>$10,000</option><option>$15,000</option><option>$20,000</option><option>$25,000</option><option>$30,000+</option></select>
-      <select><option value="">Max Mileage</option><option>Under 30k</option><option>Under 60k</option><option>Under 100k</option><option>Under 150k</option><option>Any</option></select>
-      <button class="search-btn">Search Cars</button>
+      <select id="body-select"><option value="">Body Style</option></select>
+      <select id="price-min"><option value="">Min Price</option><option value="3000">$3,000</option><option value="5000">$5,000</option><option value="8000">$8,000</option><option value="10000">$10,000</option><option value="15000">$15,000</option><option value="20000">$20,000</option></select>
+      <select id="price-max"><option value="">Max Price</option><option value="8000">$8,000</option><option value="10000">$10,000</option><option value="15000">$15,000</option><option value="20000">$20,000</option><option value="25000">$25,000</option><option value="999999">$30,000+</option></select>
+      <select id="mileage-max"><option value="">Max Mileage</option><option value="30000">Under 30k</option><option value="60000">Under 60k</option><option value="100000">Under 100k</option><option value="150000">Under 150k</option><option value="999999">Any</option></select>
+    </div>
+    <div class="search-row3">
+      <p class="search-hint">Showing <span id="live-count">16</span> vehicles from local Brownsville dealerships</p>
+      <button class="search-btn" onclick="runSearch()">Search Cars</button>
     </div>
   </div>
 </div>
 
-<!-- STATS -->
 <div class="stats">
-  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Local Dealerships</div></div>
-  <div class="stat"><div class="stat-num">115+</div><div class="stat-label">Cars Listed</div></div>
-  <div class="stat"><div class="stat-num">Brownsville</div><div class="stat-label">Coverage Area</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Local Dealerships</div></div>
+  <div class="stat"><div class="stat-num" id="total-count">16</div><div class="stat-label">Cars Listed</div></div>
+  <div class="stat"><div class="stat-num">Brownsville, TX</div><div class="stat-label">Coverage Area</div></div>
   <div class="stat"><div class="stat-num">Free</div><div class="stat-label">To Browse</div></div>
 </div>
 
-<!-- FEATURED LISTINGS -->
 <section id="listings">
   <div class="container">
     <div class="section-header">
-      <h2>Featured Listings</h2>
-      <a href="#">View all cars &rarr;</a>
+      <h2>Available Vehicles</h2>
+      <a onclick="resetSearch()">Clear Filters</a>
     </div>
-    <div class="cars-grid">
-
-      <div class="car-card">
-        <div class="car-img" style="background:linear-gradient(135deg,#1a2a4a 0%,#2d4a7a 100%)">
-          <svg class="car-silhouette" width="180" height="80" viewBox="0 0 200 80" fill="white"><path d="M30 55 L40 30 Q50 15 80 12 L130 12 Q155 12 165 30 L175 55 L185 55 L185 62 L15 62 L15 55 Z M55 12 L75 12 L70 30 L45 30 Z M125 12 L155 12 L160 30 L130 30 Z"/><circle cx="55" cy="62" r="12"/><circle cx="150" cy="62" r="12"/></svg>
-          <div class="car-badge new">New</div>
-        </div>
-        <div class="car-info">
-          <div class="car-price">$8,500</div>
-          <div class="car-name">2017 Toyota Camry SE</div>
-          <div class="car-specs">
-            <span class="car-spec">&#128337; 78,400 mi</span>
-            <span class="car-spec">&#9881;&#65039; Automatic</span>
-            <span class="car-spec">&#127959; Silver</span>
-          </div>
-        </div>
-        <div class="car-footer">
-          <span class="car-dealer">CL Auto Sales Inc.</span>
-          <button class="car-contact">Contact</button>
-        </div>
-      </div>
-
-      <div class="car-card">
-        <div class="car-img" style="background:linear-gradient(135deg,#1a3a2a 0%,#2d6a4a 100%)">
-          <svg class="car-silhouette" width="200" height="85" viewBox="0 0 220 85" fill="white"><path d="M20 60 L25 35 Q30 18 55 14 L100 12 Q125 12 140 20 L175 35 L195 60 L205 60 L205 68 L10 68 L10 60 Z M50 14 L75 14 L72 35 L42 35 Z M105 12 L140 14 L155 35 L100 35 Z"/><circle cx="50" cy="68" r="13"/><circle cx="165" cy="68" r="13"/></svg>
-          <div class="car-badge">Used</div>
-        </div>
-        <div class="car-info">
-          <div class="car-price">$14,200</div>
-          <div class="car-name">2019 Honda CR-V LX</div>
-          <div class="car-specs">
-            <span class="car-spec">&#128337; 52,100 mi</span>
-            <span class="car-spec">&#9881;&#65039; Automatic</span>
-            <span class="car-spec">&#127959; White</span>
-          </div>
-        </div>
-        <div class="car-footer">
-          <span class="car-dealer">Brownsville Auto Credit</span>
-          <button class="car-contact">Contact</button>
-        </div>
-      </div>
-
-      <div class="car-card">
-        <div class="car-img" style="background:linear-gradient(135deg,#2a1a1a 0%,#5a2d2d 100%)">
-          <svg class="car-silhouette" width="200" height="85" viewBox="0 0 230 85" fill="white"><path d="M15 58 L22 32 Q28 16 55 13 L110 11 Q138 11 158 20 L195 40 L210 58 L215 58 L215 66 L8 66 L8 58 Z M50 13 L80 13 L77 35 L45 35 Z M115 11 L158 14 L170 35 L112 35 Z"/><circle cx="52" cy="66" r="13"/><circle cx="172" cy="66" r="13"/></svg>
-          <div class="car-badge new">New</div>
-        </div>
-        <div class="car-info">
-          <div class="car-price">$11,900</div>
-          <div class="car-name">2018 Nissan Altima SV</div>
-          <div class="car-specs">
-            <span class="car-spec">&#128337; 65,200 mi</span>
-            <span class="car-spec">&#9881;&#65039; Automatic</span>
-            <span class="car-spec">&#127959; Black</span>
-          </div>
-        </div>
-        <div class="car-footer">
-          <span class="car-dealer">Julio's Used Cars</span>
-          <button class="car-contact">Contact</button>
-        </div>
-      </div>
-
-      <div class="car-card">
-        <div class="car-img" style="background:linear-gradient(135deg,#1a1a2a 0%,#2d3a6a 100%)">
-          <svg class="car-silhouette" width="210" height="90" viewBox="0 0 240 90" fill="white"><path d="M10 62 L18 34 Q26 16 55 13 L120 11 Q150 11 170 18 L205 38 L218 62 L222 62 L222 70 L5 70 L5 62 Z M52 13 L82 13 L80 36 L48 36 Z M125 11 L170 14 L180 36 L122 36 Z"/><circle cx="52" cy="70" r="13"/><circle cx="180" cy="70" r="13"/></svg>
-          <div class="car-badge">Used</div>
-        </div>
-        <div class="car-info">
-          <div class="car-price">$16,500</div>
-          <div class="car-name">2020 Ford F-150 XL</div>
-          <div class="car-specs">
-            <span class="car-spec">&#128337; 44,800 mi</span>
-            <span class="car-spec">&#9881;&#65039; Automatic</span>
-            <span class="car-spec">&#127959; Gray</span>
-          </div>
-        </div>
-        <div class="car-footer">
-          <span class="car-dealer">EZ Used Cars Inc.</span>
-          <button class="car-contact">Contact</button>
-        </div>
-      </div>
-
-      <div class="car-card">
-        <div class="car-img" style="background:linear-gradient(135deg,#1f2a1a 0%,#3a5a2d 100%)">
-          <svg class="car-silhouette" width="185" height="80" viewBox="0 0 210 80" fill="white"><path d="M25 55 L32 30 Q38 14 62 11 L115 11 Q142 11 158 22 L185 40 L195 55 L200 55 L200 63 L18 63 L18 55 Z M58 11 L85 11 L82 32 L52 32 Z M118 11 L158 14 L165 32 L115 32 Z"/><circle cx="52" cy="63" r="12"/><circle cx="162" cy="63" r="12"/></svg>
-          <div class="car-badge new">New</div>
-        </div>
-        <div class="car-info">
-          <div class="car-price">$7,200</div>
-          <div class="car-name">2016 Chevrolet Malibu LT</div>
-          <div class="car-specs">
-            <span class="car-spec">&#128337; 92,300 mi</span>
-            <span class="car-spec">&#9881;&#65039; Automatic</span>
-            <span class="car-spec">&#127959; Blue</span>
-          </div>
-        </div>
-        <div class="car-footer">
-          <span class="car-dealer">J &amp; H Auto Sales</span>
-          <button class="car-contact">Contact</button>
-        </div>
-      </div>
-
-      <div class="car-card">
-        <div class="car-img" style="background:linear-gradient(135deg,#2a1f1a 0%,#6a4a2d 100%)">
-          <svg class="car-silhouette" width="200" height="85" viewBox="0 0 225 85" fill="white"><path d="M18 58 L26 32 Q33 15 60 12 L112 10 Q142 10 162 20 L195 42 L208 58 L212 58 L212 66 L12 66 L12 58 Z M56 12 L86 12 L84 34 L50 34 Z M118 10 L162 13 L172 34 L115 34 Z"/><circle cx="52" cy="66" r="13"/><circle cx="170" cy="66" r="13"/></svg>
-          <div class="car-badge">Used</div>
-        </div>
-        <div class="car-info">
-          <div class="car-price">$19,800</div>
-          <div class="car-name">2021 Jeep Grand Cherokee</div>
-          <div class="car-specs">
-            <span class="car-spec">&#128337; 31,500 mi</span>
-            <span class="car-spec">&#9881;&#65039; Automatic</span>
-            <span class="car-spec">&#127959; Red</span>
-          </div>
-        </div>
-        <div class="car-footer">
-          <span class="car-dealer">CL Auto Sales Inc.</span>
-          <button class="car-contact">Contact</button>
-        </div>
-      </div>
-
-    </div>
+    <p class="results-count" id="results-count">Showing <span>16</span> vehicles near Brownsville, TX</p>
+    <div class="cars-grid" id="cars-grid"></div>
   </div>
 </section>
 
-<!-- WHY -->
 <section class="why">
   <div class="container">
     <h2>Why Use RGV Autos?</h2>
     <p class="sub">The only platform built specifically for the Rio Grande Valley car market.</p>
     <div class="why-grid">
-      <div class="why-card">
-        <div class="why-icon">&#127968;</div>
-        <h3>100% Local</h3>
-        <p>Every listing is from a Brownsville or Valley dealer. No out-of-state bait listings.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">&#128269;</div>
-        <h3>One Search, All Lots</h3>
-        <p>Stop driving lot to lot. Browse every local dealer's inventory from your phone.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">&#11088;</div>
-        <h3>Verified Reviews</h3>
-        <p>Real ratings from real buyers. Know which dealers to trust before you go.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">&#128179;</div>
-        <h3>Payment Calculator</h3>
-        <p>Estimate your monthly payment on any listing before you ever step on the lot.</p>
-      </div>
+      <div class="why-card"><div class="why-icon">&#127968;</div><h3>100% Local</h3><p>Every listing is from a Brownsville or Valley dealer. No out-of-state bait listings.</p></div>
+      <div class="why-card"><div class="why-icon">&#128269;</div><h3>One Search, All Lots</h3><p>Stop driving lot to lot. Browse every local dealer's inventory from your phone.</p></div>
+      <div class="why-card"><div class="why-icon">&#11088;</div><h3>Verified Reviews</h3><p>Real ratings from real buyers. Know which dealers to trust before you go.</p></div>
+      <div class="why-card"><div class="why-icon">&#128179;</div><h3>Payment Estimator</h3><p>See estimated monthly payments on any listing before you ever step on the lot.</p></div>
     </div>
   </div>
 </section>
 
-<!-- DEALERS -->
 <section id="dealers" style="background:var(--gray)">
   <div class="container">
     <div class="section-header">
       <h2>Local Dealerships</h2>
-      <a href="#">View all dealers &rarr;</a>
+      <a href="list-your-lot.html">List your lot &rarr;</a>
     </div>
     <div class="dealers-grid">
-
-      <div class="dealer-card">
-        <div class="dealer-head">
-          <div class="dealer-avatar">CL</div>
-          <div>
-            <div class="dealer-name">CL Auto Sales Inc.</div>
-            <div class="dealer-addr">7885 Southmost Rd, Brownsville</div>
-          </div>
-        </div>
-        <div class="dealer-stats">
-          <div class="d-stat"><span class="d-stat-num">34</span><span class="d-stat-label">Cars listed</span></div>
-          <div class="d-stat"><span class="d-stat-num">4.8 &#9733;</span><span class="d-stat-label">64 reviews</span></div>
-        </div>
-        <div class="dealer-badge verified">&#10003; Verified Dealer</div>
-      </div>
-
-      <div class="dealer-card">
-        <div class="dealer-head">
-          <div class="dealer-avatar" style="background:#1a4a6a">BAC</div>
-          <div>
-            <div class="dealer-name">Brownsville Auto Credit</div>
-            <div class="dealer-addr">1844 E Filmore St, Brownsville</div>
-          </div>
-        </div>
-        <div class="dealer-stats">
-          <div class="d-stat"><span class="d-stat-num">21</span><span class="d-stat-label">Cars listed</span></div>
-          <div class="d-stat"><span class="d-stat-num">4.8 &#9733;</span><span class="d-stat-label">44 reviews</span></div>
-        </div>
-        <div class="dealer-badge verified">&#10003; Verified Dealer</div>
-      </div>
-
-      <div class="dealer-card">
-        <div class="dealer-head">
-          <div class="dealer-avatar" style="background:#2d4a1a">JU</div>
-          <div>
-            <div class="dealer-name">Julio's Used Cars</div>
-            <div class="dealer-addr">5215 Southmost Rd, Brownsville</div>
-          </div>
-        </div>
-        <div class="dealer-stats">
-          <div class="d-stat"><span class="d-stat-num">18</span><span class="d-stat-label">Cars listed</span></div>
-          <div class="d-stat"><span class="d-stat-num">4.5 &#9733;</span><span class="d-stat-label">30 reviews</span></div>
-        </div>
-        <div class="dealer-badge trial">Free Trial</div>
-      </div>
-
-      <div class="dealer-card">
-        <div class="dealer-head">
-          <div class="dealer-avatar" style="background:#4a1a1a">EZ</div>
-          <div>
-            <div class="dealer-name">EZ Used Cars Inc.</div>
-            <div class="dealer-addr">1711 N Frontage Rd, Brownsville</div>
-          </div>
-        </div>
-        <div class="dealer-stats">
-          <div class="d-stat"><span class="d-stat-num">27</span><span class="d-stat-label">Cars listed</span></div>
-          <div class="d-stat"><span class="d-stat-num">4.0 &#9733;</span><span class="d-stat-label">63 reviews</span></div>
-        </div>
-        <div class="dealer-badge trial">Free Trial</div>
-      </div>
-
+      <div class="dealer-card"><div class="dealer-head"><div class="dealer-avatar">CL</div><div><div class="dealer-name">CL Auto Sales Inc.</div><div class="dealer-addr">7885 Southmost Rd</div></div></div><div class="dealer-stats"><div><span class="d-stat-num">5</span><span class="d-stat-label">Cars listed</span></div><div><span class="d-stat-num">4.8 &#9733;</span><span class="d-stat-label">64 reviews</span></div></div><span class="dealer-badge verified">&#10003; Verified Dealer</span></div>
+      <div class="dealer-card"><div class="dealer-head"><div class="dealer-avatar" style="background:#1a4a6a">BAC</div><div><div class="dealer-name">Brownsville Auto Credit</div><div class="dealer-addr">1844 E Filmore St</div></div></div><div class="dealer-stats"><div><span class="d-stat-num">4</span><span class="d-stat-label">Cars listed</span></div><div><span class="d-stat-num">4.8 &#9733;</span><span class="d-stat-label">44 reviews</span></div></div><span class="dealer-badge verified">&#10003; Verified Dealer</span></div>
+      <div class="dealer-card"><div class="dealer-head"><div class="dealer-avatar" style="background:#2d4a1a">JU</div><div><div class="dealer-name">Julio's Used Cars</div><div class="dealer-addr">5215 Southmost Rd</div></div></div><div class="dealer-stats"><div><span class="d-stat-num">3</span><span class="d-stat-label">Cars listed</span></div><div><span class="d-stat-num">4.5 &#9733;</span><span class="d-stat-label">30 reviews</span></div></div><span class="dealer-badge trial">Free Trial</span></div>
+      <div class="dealer-card"><div class="dealer-head"><div class="dealer-avatar" style="background:#4a1a1a">EZ</div><div><div class="dealer-name">EZ Used Cars Inc.</div><div class="dealer-addr">1711 N Frontage Rd</div></div></div><div class="dealer-stats"><div><span class="d-stat-num">4</span><span class="d-stat-label">Cars listed</span></div><div><span class="d-stat-num">4.0 &#9733;</span><span class="d-stat-label">63 reviews</span></div></div><span class="dealer-badge trial">Free Trial</span></div>
     </div>
   </div>
 </section>
 
-<!-- NOTIFY -->
 <div class="notify">
   <h2>Get Notified When Your Car Arrives</h2>
-  <p>Set your criteria and we'll text you the moment a matching car is listed locally.</p>
-  <div class="notify-form">
-    <input type="email" placeholder="Enter your email address"/>
-    <button>Notify Me</button>
-  </div>
+  <p>Set your criteria and we'll email you the moment a matching car is listed locally.</p>
+  <div class="notify-form"><input type="email" placeholder="Enter your email address"/><button>Notify Me</button></div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <strong>RGVAutos.com</strong>
-  <div class="footer-links">
-    <a href="#">Browse Cars</a>
-    <a href="#">Dealers</a>
-    <a href="#">List Your Lot</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-    <a href="#">Privacy Policy</a>
-  </div>
+  <div class="footer-links"><a href="#">Browse Cars</a><a href="#dealers">Dealers</a><a href="list-your-lot.html">List Your Lot</a><a href="#">About</a><a href="#">Contact</a><a href="#">Privacy Policy</a></div>
   <p>&copy; 2025 RGV Autos &mdash; Brownsville, Texas &mdash; All rights reserved</p>
   <p style="margin-top:.5rem;font-size:.75rem">This platform is independently operated and not affiliated with any individual dealership.</p>
 </footer>
 
 <script>
-const DATA={Toyota:{Camry:[1990,2024,'Sedan'],Corolla:[1990,2024,'Sedan'],RAV4:[1996,2024,'SUV / Crossover'],Highlander:[2001,2024,'SUV / Crossover'],Tacoma:[1995,2024,'Truck'],Tundra:[2000,2024,'Truck'],'4Runner':[1990,2024,'SUV / Crossover'],Prius:[2001,2024,'Sedan'],Sienna:[1998,2024,'Van'],Avalon:[1995,2022,'Sedan'],Venza:[2009,2024,'SUV / Crossover'],Sequoia:[2001,2024,'SUV / Crossover'],'C-HR':[2018,2024,'SUV / Crossover'],Yaris:[2007,2020,'Sedan']},Honda:{Civic:[1990,2024,'Sedan'],Accord:[1990,2024,'Sedan'],'CR-V':[1997,2024,'SUV / Crossover'],Pilot:[2003,2024,'SUV / Crossover'],'HR-V':[2016,2024,'SUV / Crossover'],Odyssey:[1995,2024,'Van'],Ridgeline:[2006,2024,'Truck'],Passport:[1994,2024,'SUV / Crossover'],Fit:[2007,2020,'Hatchback'],Insight:[2000,2022,'Sedan']},Chevrolet:{Silverado:[1999,2024,'Truck'],Equinox:[2005,2024,'SUV / Crossover'],Malibu:[1997,2024,'Sedan'],Traverse:[2009,2024,'SUV / Crossover'],Tahoe:[1995,2024,'SUV / Crossover'],Suburban:[1990,2024,'SUV / Crossover'],Colorado:[2004,2024,'Truck'],Camaro:[1990,2024,'Coupe'],Spark:[2013,2024,'Hatchback'],Blazer:[2019,2024,'SUV / Crossover'],Trax:[2013,2024,'SUV / Crossover'],Impala:[1990,2020,'Sedan']},Ford:{'F-150':[1990,2024,'Truck'],Explorer:[1991,2024,'SUV / Crossover'],Escape:[2001,2024,'SUV / Crossover'],Edge:[2007,2024,'SUV / Crossover'],Ranger:[1990,2024,'Truck'],Expedition:[1997,2024,'SUV / Crossover'],Mustang:[1990,2024,'Coupe'],Bronco:[2021,2024,'SUV / Crossover'],Maverick:[2022,2024,'Truck'],Fusion:[2006,2020,'Sedan'],Focus:[2000,2018,'Hatchback'],EcoSport:[2018,2022,'SUV / Crossover']},Nissan:{Altima:[1993,2024,'Sedan'],Sentra:[1990,2024,'Sedan'],Rogue:[2008,2024,'SUV / Crossover'],Pathfinder:[1990,2024,'SUV / Crossover'],Frontier:[1998,2024,'Truck'],Murano:[2003,2024,'SUV / Crossover'],Maxima:[1990,2023,'Sedan'],Kicks:[2018,2024,'SUV / Crossover'],Versa:[2007,2024,'Sedan'],Armada:[2004,2024,'SUV / Crossover'],Titan:[2004,2024,'Truck'],'370Z':[2009,2022,'Coupe']},Dodge:{Charger:[2006,2024,'Sedan'],Challenger:[2008,2024,'Coupe'],Durango:[1998,2024,'SUV / Crossover'],'Grand Caravan':[1990,2020,'Van'],Journey:[2009,2020,'SUV / Crossover'],Dart:[2013,2016,'Sedan']},Jeep:{'Grand Cherokee':[1993,2024,'SUV / Crossover'],Cherokee:[1984,2024,'SUV / Crossover'],Wrangler:[1990,2024,'SUV / Crossover'],Compass:[2007,2024,'SUV / Crossover'],Renegade:[2015,2024,'SUV / Crossover'],Gladiator:[2020,2024,'Truck'],Patriot:[2007,2017,'SUV / Crossover']},Hyundai:{Elantra:[1992,2024,'Sedan'],Sonata:[1990,2024,'Sedan'],Tucson:[2005,2024,'SUV / Crossover'],'Santa Fe':[2001,2024,'SUV / Crossover'],Kona:[2018,2024,'SUV / Crossover'],Palisade:[2020,2024,'SUV / Crossover'],Accent:[1995,2024,'Sedan'],Venue:[2020,2024,'SUV / Crossover'],Ioniq:[2017,2024,'Sedan']},Kia:{Sportage:[1995,2024,'SUV / Crossover'],Sorento:[2003,2024,'SUV / Crossover'],Soul:[2010,2024,'Hatchback'],Forte:[2010,2024,'Sedan'],Optima:[2001,2020,'Sedan'],Telluride:[2020,2024,'SUV / Crossover'],Stinger:[2018,2023,'Sedan'],Rio:[2001,2024,'Sedan'],Carnival:[2022,2024,'Van'],Seltos:[2021,2024,'SUV / Crossover']},GMC:{Sierra:[1999,2024,'Truck'],Terrain:[2010,2024,'SUV / Crossover'],Acadia:[2007,2024,'SUV / Crossover'],Canyon:[2004,2024,'Truck'],Yukon:[1992,2024,'SUV / Crossover']},RAM:{'1500':[2009,2024,'Truck'],'2500':[2010,2024,'Truck'],'3500':[2010,2024,'Truck'],ProMaster:[2014,2024,'Van']},Mazda:{'CX-5':[2013,2024,'SUV / Crossover'],'CX-9':[2007,2023,'SUV / Crossover'],Mazda3:[2004,2024,'Sedan'],'CX-3':[2016,2022,'SUV / Crossover'],'MX-5 Miata':[1990,2024,'Coupe'],'CX-30':[2020,2024,'SUV / Crossover'],Mazda6:[2003,2021,'Sedan']},Subaru:{Outback:[1995,2024,'SUV / Crossover'],Forester:[1998,2024,'SUV / Crossover'],Crosstrek:[2013,2024,'SUV / Crossover'],Impreza:[1993,2024,'Sedan'],Legacy:[1990,2024,'Sedan'],Ascent:[2019,2024,'SUV / Crossover'],WRX:[2015,2024,'Sedan'],BRZ:[2013,2024,'Coupe']},Volkswagen:{Jetta:[1990,2024,'Sedan'],Passat:[1990,2022,'Sedan'],Tiguan:[2009,2024,'SUV / Crossover'],Atlas:[2018,2024,'SUV / Crossover'],Golf:[1990,2024,'Hatchback'],Taos:[2022,2024,'SUV / Crossover']},BMW:{'3 Series':[1990,2024,'Sedan'],'5 Series':[1990,2024,'Sedan'],X3:[2004,2024,'SUV / Crossover'],X5:[2000,2024,'SUV / Crossover'],X1:[2013,2024,'SUV / Crossover'],'7 Series':[1990,2024,'Sedan'],'4 Series':[2014,2024,'Coupe'],X7:[2019,2024,'SUV / Crossover']},'Mercedes-Benz':{'C-Class':[1994,2024,'Sedan'],'E-Class':[1990,2024,'Sedan'],GLC:[2016,2024,'SUV / Crossover'],GLE:[2016,2024,'SUV / Crossover'],'A-Class':[2019,2024,'Sedan'],'S-Class':[1990,2024,'Sedan'],GLA:[2015,2024,'SUV / Crossover'],GLB:[2020,2024,'SUV / Crossover']},Lexus:{RX:[1998,2024,'SUV / Crossover'],ES:[1990,2024,'Sedan'],NX:[2015,2024,'SUV / Crossover'],IS:[2001,2024,'Sedan'],GX:[2003,2024,'SUV / Crossover'],UX:[2019,2024,'SUV / Crossover'],LS:[1990,2024,'Sedan'],LX:[1996,2024,'SUV / Crossover']},Acura:{MDX:[2001,2024,'SUV / Crossover'],RDX:[2007,2024,'SUV / Crossover'],TLX:[2015,2024,'Sedan'],ILX:[2013,2022,'Sedan'],RLX:[2014,2020,'Sedan']},Mitsubishi:{Outlander:[2003,2024,'SUV / Crossover'],'Eclipse Cross':[2018,2024,'SUV / Crossover'],Galant:[1990,2012,'Sedan'],Lancer:[2002,2017,'Sedan'],Mirage:[2014,2024,'Hatchback']},Chrysler:{'300':[2005,2023,'Sedan'],Pacifica:[2017,2024,'Van'],'Town & Country':[1990,2016,'Van'],'200':[2011,2017,'Sedan']},Buick:{Enclave:[2008,2024,'SUV / Crossover'],Encore:[2013,2024,'SUV / Crossover'],LaCrosse:[2005,2019,'Sedan'],Envision:[2016,2024,'SUV / Crossover']},Cadillac:{Escalade:[1999,2024,'SUV / Crossover'],XT5:[2017,2024,'SUV / Crossover'],CT5:[2020,2024,'Sedan'],XT4:[2019,2024,'SUV / Crossover'],CTS:[2003,2019,'Sedan'],ATS:[2013,2019,'Sedan']},Lincoln:{Navigator:[1998,2024,'SUV / Crossover'],Aviator:[2020,2024,'SUV / Crossover'],Corsair:[2020,2024,'SUV / Crossover'],Nautilus:[2019,2024,'SUV / Crossover'],MKZ:[2007,2020,'Sedan']}};
+const CARS=[
+  {id:1,year:2017,make:'Toyota',model:'Camry',trim:'SE',price:8500,mileage:78400,color:'Silver',body:'Sedan',trans:'Automatic',dealer:'CL Auto Sales Inc.',phone:'(956) 554-9112',img:'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=600&h=380&q=80',badge:'New Arrival'},
+  {id:2,year:2019,make:'Honda',model:'CR-V',trim:'LX',price:14200,mileage:52100,color:'White',body:'SUV / Crossover',trans:'Automatic',dealer:'Brownsville Auto Credit',phone:'(956) 801-9090',img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=600&h=380&q=80',badge:''},
+  {id:3,year:2018,make:'Nissan',model:'Altima',trim:'SV',price:11900,mileage:65200,color:'Black',body:'Sedan',trans:'Automatic',dealer:"Julio's Used Cars",phone:'(956) 550-9922',img:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&h=380&q=80',badge:'New Arrival'},
+  {id:4,year:2020,make:'Ford',model:'F-150',trim:'XL',price:21500,mileage:44800,color:'Gray',body:'Truck',trans:'Automatic',dealer:'EZ Used Cars Inc.',phone:'(956) 550-8887',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&h=380&q=80',badge:''},
+  {id:5,year:2016,make:'Chevrolet',model:'Malibu',trim:'LT',price:7200,mileage:92300,color:'Blue',body:'Sedan',trans:'Automatic',dealer:'J & H Auto Sales',phone:'(956) 542-7141',img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=600&h=380&q=80',badge:'New Arrival'},
+  {id:6,year:2021,make:'Jeep',model:'Grand Cherokee',trim:'Laredo',price:25900,mileage:31500,color:'Red',body:'SUV / Crossover',trans:'Automatic',dealer:'CL Auto Sales Inc.',phone:'(956) 554-9112',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=600&h=380&q=80',badge:''},
+  {id:7,year:2015,make:'Honda',model:'Accord',trim:'EX',price:9400,mileage:88500,color:'White',body:'Sedan',trans:'Automatic',dealer:'Brownsville Auto Credit',phone:'(956) 801-9090',img:'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&h=380&q=80',badge:''},
+  {id:8,year:2018,make:'Toyota',model:'RAV4',trim:'LE',price:15300,mileage:61200,color:'Blue',body:'SUV / Crossover',trans:'Automatic',dealer:'CL Auto Sales Inc.',phone:'(956) 554-9112',img:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&h=380&q=80',badge:''},
+  {id:9,year:2019,make:'Chevrolet',model:'Silverado',trim:'LT',price:22800,mileage:48300,color:'Black',body:'Truck',trans:'Automatic',dealer:'EZ Used Cars Inc.',phone:'(956) 550-8887',img:'https://images.unsplash.com/photo-1616788494672-ec7ca25fdda6?auto=format&fit=crop&w=600&h=380&q=80',badge:'New Arrival'},
+  {id:10,year:2017,make:'Hyundai',model:'Elantra',trim:'SE',price:8100,mileage:71600,color:'Silver',body:'Sedan',trans:'Automatic',dealer:"Julio's Used Cars",phone:'(956) 550-9922',img:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&h=380&q=80',badge:''},
+  {id:11,year:2020,make:'Kia',model:'Sportage',trim:'LX',price:13400,mileage:39800,color:'Gray',body:'SUV / Crossover',trans:'Automatic',dealer:'J & H Auto Sales',phone:'(956) 542-7141',img:'https://images.unsplash.com/photo-1606664515524-ed2f786a705d?auto=format&fit=crop&w=600&h=380&q=80',badge:'New Arrival'},
+  {id:12,year:2016,make:'Ford',model:'Escape',trim:'SE',price:10200,mileage:79400,color:'Red',body:'SUV / Crossover',trans:'Automatic',dealer:'Brownsville Auto Credit',phone:'(956) 801-9090',img:'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=600&h=380&q=80',badge:''},
+  {id:13,year:2019,make:'Toyota',model:'Tacoma',trim:'SR5',price:27500,mileage:34100,color:'White',body:'Truck',trans:'Automatic',dealer:'CL Auto Sales Inc.',phone:'(956) 554-9112',img:'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&h=380&q=80',badge:''},
+  {id:14,year:2018,make:'Nissan',model:'Rogue',trim:'SV',price:12600,mileage:58700,color:'White',body:'SUV / Crossover',trans:'Automatic',dealer:'EZ Used Cars Inc.',phone:'(956) 550-8887',img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&h=380&q=80',badge:'New Arrival'},
+  {id:15,year:2017,make:'Dodge',model:'Charger',trim:'SXT',price:14900,mileage:67300,color:'Black',body:'Sedan',trans:'Automatic',dealer:"Julio's Used Cars",phone:'(956) 550-9922',img:'https://images.unsplash.com/photo-1571008887538-b36bb32f4571?auto=format&fit=crop&w=600&h=380&q=80',badge:''},
+  {id:16,year:2021,make:'Hyundai',model:'Tucson',trim:'SEL',price:18700,mileage:28900,color:'Blue',body:'SUV / Crossover',trans:'Automatic',dealer:'Brownsville Auto Credit',phone:'(956) 801-9090',img:'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=600&h=380&q=80',badge:'New Arrival'},
+];
+
+const DATA={Toyota:{Camry:[1990,2024,'Sedan'],Corolla:[1990,2024,'Sedan'],RAV4:[1996,2024,'SUV / Crossover'],Highlander:[2001,2024,'SUV / Crossover'],Tacoma:[1995,2024,'Truck'],Tundra:[2000,2024,'Truck'],'4Runner':[1990,2024,'SUV / Crossover'],Prius:[2001,2024,'Sedan'],Sienna:[1998,2024,'Van'],Avalon:[1995,2022,'Sedan']},Honda:{Civic:[1990,2024,'Sedan'],Accord:[1990,2024,'Sedan'],'CR-V':[1997,2024,'SUV / Crossover'],Pilot:[2003,2024,'SUV / Crossover'],'HR-V':[2016,2024,'SUV / Crossover'],Odyssey:[1995,2024,'Van'],Ridgeline:[2006,2024,'Truck'],Fit:[2007,2020,'Hatchback']},Chevrolet:{Silverado:[1999,2024,'Truck'],Equinox:[2005,2024,'SUV / Crossover'],Malibu:[1997,2024,'Sedan'],Traverse:[2009,2024,'SUV / Crossover'],Tahoe:[1995,2024,'SUV / Crossover'],Colorado:[2004,2024,'Truck'],Camaro:[1990,2024,'Coupe'],Spark:[2013,2024,'Hatchback'],Blazer:[2019,2024,'SUV / Crossover']},Ford:{'F-150':[1990,2024,'Truck'],Explorer:[1991,2024,'SUV / Crossover'],Escape:[2001,2024,'SUV / Crossover'],Edge:[2007,2024,'SUV / Crossover'],Ranger:[1990,2024,'Truck'],Expedition:[1997,2024,'SUV / Crossover'],Mustang:[1990,2024,'Coupe'],Bronco:[2021,2024,'SUV / Crossover'],Fusion:[2006,2020,'Sedan']},Nissan:{Altima:[1993,2024,'Sedan'],Sentra:[1990,2024,'Sedan'],Rogue:[2008,2024,'SUV / Crossover'],Pathfinder:[1990,2024,'SUV / Crossover'],Frontier:[1998,2024,'Truck'],Murano:[2003,2024,'SUV / Crossover'],Maxima:[1990,2023,'Sedan'],Kicks:[2018,2024,'SUV / Crossover'],Versa:[2007,2024,'Sedan'],Titan:[2004,2024,'Truck']},Dodge:{Charger:[2006,2024,'Sedan'],Challenger:[2008,2024,'Coupe'],Durango:[1998,2024,'SUV / Crossover'],'Grand Caravan':[1990,2020,'Van'],Journey:[2009,2020,'SUV / Crossover']},Jeep:{'Grand Cherokee':[1993,2024,'SUV / Crossover'],Cherokee:[1984,2024,'SUV / Crossover'],Wrangler:[1990,2024,'SUV / Crossover'],Compass:[2007,2024,'SUV / Crossover'],Renegade:[2015,2024,'SUV / Crossover'],Gladiator:[2020,2024,'Truck']},Hyundai:{Elantra:[1992,2024,'Sedan'],Sonata:[1990,2024,'Sedan'],Tucson:[2005,2024,'SUV / Crossover'],'Santa Fe':[2001,2024,'SUV / Crossover'],Kona:[2018,2024,'SUV / Crossover'],Palisade:[2020,2024,'SUV / Crossover'],Accent:[1995,2024,'Sedan']},Kia:{Sportage:[1995,2024,'SUV / Crossover'],Sorento:[2003,2024,'SUV / Crossover'],Soul:[2010,2024,'Hatchback'],Forte:[2010,2024,'Sedan'],Telluride:[2020,2024,'SUV / Crossover'],Rio:[2001,2024,'Sedan'],Carnival:[2022,2024,'Van']},GMC:{Sierra:[1999,2024,'Truck'],Terrain:[2010,2024,'SUV / Crossover'],Acadia:[2007,2024,'SUV / Crossover'],Canyon:[2004,2024,'Truck'],Yukon:[1992,2024,'SUV / Crossover']},RAM:{'1500':[2009,2024,'Truck'],'2500':[2010,2024,'Truck'],'3500':[2010,2024,'Truck']},Mazda:{'CX-5':[2013,2024,'SUV / Crossover'],Mazda3:[2004,2024,'Sedan'],'MX-5 Miata':[1990,2024,'Coupe'],Mazda6:[2003,2021,'Sedan']},Subaru:{Outback:[1995,2024,'SUV / Crossover'],Forester:[1998,2024,'SUV / Crossover'],Crosstrek:[2013,2024,'SUV / Crossover'],Impreza:[1993,2024,'Sedan'],Legacy:[1990,2024,'Sedan'],WRX:[2015,2024,'Sedan']},Volkswagen:{Jetta:[1990,2024,'Sedan'],Passat:[1990,2022,'Sedan'],Tiguan:[2009,2024,'SUV / Crossover'],Golf:[1990,2024,'Hatchback']},BMW:{'3 Series':[1990,2024,'Sedan'],X3:[2004,2024,'SUV / Crossover'],X5:[2000,2024,'SUV / Crossover'],'5 Series':[1990,2024,'Sedan']},'Mercedes-Benz':{'C-Class':[1994,2024,'Sedan'],'E-Class':[1990,2024,'Sedan'],GLC:[2016,2024,'SUV / Crossover'],GLE:[2016,2024,'SUV / Crossover']},Lexus:{RX:[1998,2024,'SUV / Crossover'],ES:[1990,2024,'Sedan'],NX:[2015,2024,'SUV / Crossover'],IS:[2001,2024,'Sedan']},Acura:{MDX:[2001,2024,'SUV / Crossover'],RDX:[2007,2024,'SUV / Crossover'],TLX:[2015,2024,'Sedan']},Mitsubishi:{Outlander:[2003,2024,'SUV / Crossover'],Lancer:[2002,2017,'Sedan'],Mirage:[2014,2024,'Hatchback']},Chrysler:{'300':[2005,2023,'Sedan'],Pacifica:[2017,2024,'Van']},Buick:{Enclave:[2008,2024,'SUV / Crossover'],Encore:[2013,2024,'SUV / Crossover'],LaCrosse:[2005,2019,'Sedan']},Cadillac:{Escalade:[1999,2024,'SUV / Crossover'],XT5:[2017,2024,'SUV / Crossover'],CT5:[2020,2024,'Sedan']},Lincoln:{Navigator:[1998,2024,'SUV / Crossover'],Aviator:[2020,2024,'SUV / Crossover'],MKZ:[2007,2020,'Sedan']}};
 
 const STYLES=['Sedan','SUV / Crossover','Truck','Van','Coupe','Hatchback'];
 const CUR=new Date().getFullYear();
 
-function fillYears(minSel,maxSel,start,end){
-  minSel.innerHTML='<option value="">From Year</option>';
-  maxSel.innerHTML='<option value="">To Year</option>';
-  for(let y=start;y<=end;y++){
-    minSel.innerHTML+=`<option>${y}</option>`;
-    maxSel.innerHTML+=`<option>${y}</option>`;
-  }
+function fillYears(minId,maxId,start,end){
+  const mn=document.getElementById(minId),mx=document.getElementById(maxId);
+  mn.innerHTML='<option value="">From Year</option>';
+  mx.innerHTML='<option value="">To Year</option>';
+  for(let y=end;y>=start;y--){mn.innerHTML+=`<option value="${y}">${y}</option>`;mx.innerHTML+=`<option value="${y}">${y}</option>`;}
 }
-
-function fillStyles(sel,autoSelect){
-  sel.innerHTML='<option value="">Body Style</option>';
-  STYLES.forEach(s=>sel.innerHTML+=`<option${s===autoSelect?' selected':''}>${s}</option>`);
+function fillStyles(id,auto){
+  const s=document.getElementById(id);
+  s.innerHTML='<option value="">Body Style</option>';
+  STYLES.forEach(st=>s.innerHTML+=`<option value="${st}"${st===auto?' selected':''}>${st}</option>`);
 }
-
 function updateModels(){
   const make=document.getElementById('make-select').value;
-  const modelSel=document.getElementById('model-select');
-  const yMin=document.getElementById('year-min');
-  const yMax=document.getElementById('year-max');
-  const body=document.getElementById('body-select');
-  modelSel.innerHTML='<option value="">Any Model</option>';
-  fillStyles(body,'');
-  if(!make||!DATA[make]){fillYears(yMin,yMax,1990,CUR);return;}
-  Object.keys(DATA[make]).sort().forEach(m=>modelSel.innerHTML+=`<option>${m}</option>`);
+  const ms=document.getElementById('model-select');
+  ms.innerHTML='<option value="">Any Model</option>';
+  fillStyles('body-select','');
+  if(!make||!DATA[make]){fillYears('year-min','year-max',1990,CUR);return;}
+  Object.keys(DATA[make]).sort().forEach(m=>ms.innerHTML+=`<option value="${m}">${m}</option>`);
   const starts=Object.values(DATA[make]).map(v=>v[0]);
-  fillYears(yMin,yMax,Math.min(...starts),CUR);
+  fillYears('year-min','year-max',Math.min(...starts),CUR);
 }
-
 function updateFromModel(){
   const make=document.getElementById('make-select').value;
   const model=document.getElementById('model-select').value;
-  const yMin=document.getElementById('year-min');
-  const yMax=document.getElementById('year-max');
-  const body=document.getElementById('body-select');
   if(!make||!model||!DATA[make]||!DATA[make][model]){updateModels();return;}
   const[start,end,style]=DATA[make][model];
-  fillYears(yMin,yMax,start,Math.min(end,CUR));
-  fillStyles(body,style);
+  fillYears('year-min','year-max',start,Math.min(end,CUR));
+  fillStyles('body-select',style);
+}
+
+function fmt(p){return '$'+p.toLocaleString();}
+function fmtM(m){return m.toLocaleString()+' mi';}
+
+function renderCars(list){
+  const grid=document.getElementById('cars-grid');
+  const rc=document.getElementById('results-count');
+  const lc=document.getElementById('live-count');
+  if(lc)lc.textContent=list.length;
+  rc.innerHTML=`Showing <span>${list.length}</span> vehicle${list.length!==1?'s':''} near Brownsville, TX`;
+  if(list.length===0){
+    grid.innerHTML=`<div class="no-results"><h3>No vehicles found</h3><p>Try adjusting your search filters.</p><button onclick="resetSearch()">Clear All Filters</button></div>`;
+    return;
+  }
+  grid.innerHTML=list.map(c=>`
+    <div class="car-card">
+      <div class="car-img">
+        <img src="${c.img}" alt="${c.year} ${c.make} ${c.model}" loading="lazy" onerror="this.style.display='none'"/>
+        ${c.badge?`<span class="car-badge hot">${c.badge}</span>`:'<span class="car-badge">Used</span>'}
+      </div>
+      <div class="car-info">
+        <div class="car-price">${fmt(c.price)}</div>
+        <div class="car-name">${c.year} ${c.make} ${c.model} ${c.trim}</div>
+        <div class="car-specs">
+          <span class="car-spec">${fmtM(c.mileage)}</span>
+          <span class="car-spec">&middot; ${c.color}</span>
+          <span class="car-spec">&middot; ${c.body}</span>
+          <span class="car-spec">&middot; ${c.trans}</span>
+        </div>
+      </div>
+      <div class="car-footer">
+        <span class="car-dealer">${c.dealer}</span>
+        <button class="car-contact" onclick="alert('Contact ${c.dealer}\\nPhone: ${c.phone}\\n\\nA full contact form is coming soon!')">Contact</button>
+      </div>
+    </div>`).join('');
+}
+
+function runSearch(){
+  const make=document.getElementById('make-select').value;
+  const model=document.getElementById('model-select').value;
+  const yMin=parseInt(document.getElementById('year-min').value)||0;
+  const yMax=parseInt(document.getElementById('year-max').value)||9999;
+  const body=document.getElementById('body-select').value;
+  const pMin=parseInt(document.getElementById('price-min').value)||0;
+  const pMax=parseInt(document.getElementById('price-max').value)||9999999;
+  const mMax=parseInt(document.getElementById('mileage-max').value)||9999999;
+  const results=CARS.filter(c=>{
+    if(make&&c.make!==make)return false;
+    if(model&&c.model!==model)return false;
+    if(yMin&&c.year<yMin)return false;
+    if(yMax&&c.year>yMax)return false;
+    if(body&&c.body!==body)return false;
+    if(c.price<pMin||c.price>pMax)return false;
+    if(c.mileage>mMax)return false;
+    return true;
+  });
+  renderCars(results);
+  document.getElementById('listings').scrollIntoView({behavior:'smooth'});
+}
+
+function resetSearch(){
+  ['make-select','model-select','year-min','year-max','body-select','price-min','price-max','mileage-max'].forEach(id=>document.getElementById(id).value='');
+  fillYears('year-min','year-max',1990,CUR);
+  fillStyles('body-select','');
+  document.getElementById('model-select').innerHTML='<option value="">Any Model</option>';
+  renderCars(CARS);
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
-  fillStyles(document.getElementById('body-select'),'');
-  fillYears(document.getElementById('year-min'),document.getElementById('year-max'),1990,CUR);
+  fillStyles('body-select','');
+  fillYears('year-min','year-max',1990,CUR);
+  renderCars(CARS);
 });
 </script>
 </body>
