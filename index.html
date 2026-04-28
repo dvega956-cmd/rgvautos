@@ -160,10 +160,13 @@ footer strong{color:rgba(255,255,255,.85);font-family:'Barlow Condensed',sans-se
 
   <div class="search-box">
     <div class="search-row">
-      <select><option value="">Any Make</option><option>Toyota</option><option>Honda</option><option>Chevrolet</option><option>Ford</option><option>Nissan</option><option>Dodge</option><option>Jeep</option><option>Hyundai</option><option>Kia</option></select>
-      <select><option value="">Any Model</option><option>Camry</option><option>Civic</option><option>F-150</option><option>Silverado</option><option>Altima</option><option>Sentra</option><option>Ram 1500</option></select>
-      <select><option value="">Any Year</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option><option>2019</option><option>2018</option><option>2017</option><option>2016 &amp; older</option></select>
-      <select><option value="">Body Style</option><option>Sedan</option><option>SUV / Crossover</option><option>Truck</option><option>Van</option><option>Coupe</option><option>Hatchback</option></select>
+      <select id="make-select" onchange="updateModels()"><option value="">Any Make</option><option>Toyota</option><option>Honda</option><option>Chevrolet</option><option>Ford</option><option>Nissan</option><option>Dodge</option><option>Jeep</option><option>Hyundai</option><option>Kia</option><option>GMC</option><option>RAM</option><option>Mazda</option><option>Subaru</option><option>Volkswagen</option><option>BMW</option><option>Mercedes-Benz</option><option>Lexus</option><option>Acura</option><option>Mitsubishi</option><option>Chrysler</option><option>Buick</option><option>Cadillac</option><option>Lincoln</option></select>
+      <select id="model-select" onchange="updateFromModel()"><option value="">Any Model</option></select>
+      <select id="year-min"><option value="">From Year</option></select>
+      <select id="year-max"><option value="">To Year</option></select>
+    </div>
+    <div class="search-row">
+      <select id="body-select"><option value="">Body Style</option></select>
     </div>
     <div class="search-row2">
       <select><option value="">Min Price</option><option>$3,000</option><option>$5,000</option><option>$8,000</option><option>$10,000</option><option>$15,000</option></select>
@@ -443,5 +446,56 @@ footer strong{color:rgba(255,255,255,.85);font-family:'Barlow Condensed',sans-se
   <p style="margin-top:.5rem;font-size:.75rem">This platform is independently operated and not affiliated with any individual dealership.</p>
 </footer>
 
+<script>
+const DATA={Toyota:{Camry:[1990,2024,'Sedan'],Corolla:[1990,2024,'Sedan'],RAV4:[1996,2024,'SUV / Crossover'],Highlander:[2001,2024,'SUV / Crossover'],Tacoma:[1995,2024,'Truck'],Tundra:[2000,2024,'Truck'],'4Runner':[1990,2024,'SUV / Crossover'],Prius:[2001,2024,'Sedan'],Sienna:[1998,2024,'Van'],Avalon:[1995,2022,'Sedan'],Venza:[2009,2024,'SUV / Crossover'],Sequoia:[2001,2024,'SUV / Crossover'],'C-HR':[2018,2024,'SUV / Crossover'],Yaris:[2007,2020,'Sedan']},Honda:{Civic:[1990,2024,'Sedan'],Accord:[1990,2024,'Sedan'],'CR-V':[1997,2024,'SUV / Crossover'],Pilot:[2003,2024,'SUV / Crossover'],'HR-V':[2016,2024,'SUV / Crossover'],Odyssey:[1995,2024,'Van'],Ridgeline:[2006,2024,'Truck'],Passport:[1994,2024,'SUV / Crossover'],Fit:[2007,2020,'Hatchback'],Insight:[2000,2022,'Sedan']},Chevrolet:{Silverado:[1999,2024,'Truck'],Equinox:[2005,2024,'SUV / Crossover'],Malibu:[1997,2024,'Sedan'],Traverse:[2009,2024,'SUV / Crossover'],Tahoe:[1995,2024,'SUV / Crossover'],Suburban:[1990,2024,'SUV / Crossover'],Colorado:[2004,2024,'Truck'],Camaro:[1990,2024,'Coupe'],Spark:[2013,2024,'Hatchback'],Blazer:[2019,2024,'SUV / Crossover'],Trax:[2013,2024,'SUV / Crossover'],Impala:[1990,2020,'Sedan']},Ford:{'F-150':[1990,2024,'Truck'],Explorer:[1991,2024,'SUV / Crossover'],Escape:[2001,2024,'SUV / Crossover'],Edge:[2007,2024,'SUV / Crossover'],Ranger:[1990,2024,'Truck'],Expedition:[1997,2024,'SUV / Crossover'],Mustang:[1990,2024,'Coupe'],Bronco:[2021,2024,'SUV / Crossover'],Maverick:[2022,2024,'Truck'],Fusion:[2006,2020,'Sedan'],Focus:[2000,2018,'Hatchback'],EcoSport:[2018,2022,'SUV / Crossover']},Nissan:{Altima:[1993,2024,'Sedan'],Sentra:[1990,2024,'Sedan'],Rogue:[2008,2024,'SUV / Crossover'],Pathfinder:[1990,2024,'SUV / Crossover'],Frontier:[1998,2024,'Truck'],Murano:[2003,2024,'SUV / Crossover'],Maxima:[1990,2023,'Sedan'],Kicks:[2018,2024,'SUV / Crossover'],Versa:[2007,2024,'Sedan'],Armada:[2004,2024,'SUV / Crossover'],Titan:[2004,2024,'Truck'],'370Z':[2009,2022,'Coupe']},Dodge:{Charger:[2006,2024,'Sedan'],Challenger:[2008,2024,'Coupe'],Durango:[1998,2024,'SUV / Crossover'],'Grand Caravan':[1990,2020,'Van'],Journey:[2009,2020,'SUV / Crossover'],Dart:[2013,2016,'Sedan']},Jeep:{'Grand Cherokee':[1993,2024,'SUV / Crossover'],Cherokee:[1984,2024,'SUV / Crossover'],Wrangler:[1990,2024,'SUV / Crossover'],Compass:[2007,2024,'SUV / Crossover'],Renegade:[2015,2024,'SUV / Crossover'],Gladiator:[2020,2024,'Truck'],Patriot:[2007,2017,'SUV / Crossover']},Hyundai:{Elantra:[1992,2024,'Sedan'],Sonata:[1990,2024,'Sedan'],Tucson:[2005,2024,'SUV / Crossover'],'Santa Fe':[2001,2024,'SUV / Crossover'],Kona:[2018,2024,'SUV / Crossover'],Palisade:[2020,2024,'SUV / Crossover'],Accent:[1995,2024,'Sedan'],Venue:[2020,2024,'SUV / Crossover'],Ioniq:[2017,2024,'Sedan']},Kia:{Sportage:[1995,2024,'SUV / Crossover'],Sorento:[2003,2024,'SUV / Crossover'],Soul:[2010,2024,'Hatchback'],Forte:[2010,2024,'Sedan'],Optima:[2001,2020,'Sedan'],Telluride:[2020,2024,'SUV / Crossover'],Stinger:[2018,2023,'Sedan'],Rio:[2001,2024,'Sedan'],Carnival:[2022,2024,'Van'],Seltos:[2021,2024,'SUV / Crossover']},GMC:{Sierra:[1999,2024,'Truck'],Terrain:[2010,2024,'SUV / Crossover'],Acadia:[2007,2024,'SUV / Crossover'],Canyon:[2004,2024,'Truck'],Yukon:[1992,2024,'SUV / Crossover']},RAM:{'1500':[2009,2024,'Truck'],'2500':[2010,2024,'Truck'],'3500':[2010,2024,'Truck'],ProMaster:[2014,2024,'Van']},Mazda:{'CX-5':[2013,2024,'SUV / Crossover'],'CX-9':[2007,2023,'SUV / Crossover'],Mazda3:[2004,2024,'Sedan'],'CX-3':[2016,2022,'SUV / Crossover'],'MX-5 Miata':[1990,2024,'Coupe'],'CX-30':[2020,2024,'SUV / Crossover'],Mazda6:[2003,2021,'Sedan']},Subaru:{Outback:[1995,2024,'SUV / Crossover'],Forester:[1998,2024,'SUV / Crossover'],Crosstrek:[2013,2024,'SUV / Crossover'],Impreza:[1993,2024,'Sedan'],Legacy:[1990,2024,'Sedan'],Ascent:[2019,2024,'SUV / Crossover'],WRX:[2015,2024,'Sedan'],BRZ:[2013,2024,'Coupe']},Volkswagen:{Jetta:[1990,2024,'Sedan'],Passat:[1990,2022,'Sedan'],Tiguan:[2009,2024,'SUV / Crossover'],Atlas:[2018,2024,'SUV / Crossover'],Golf:[1990,2024,'Hatchback'],Taos:[2022,2024,'SUV / Crossover']},BMW:{'3 Series':[1990,2024,'Sedan'],'5 Series':[1990,2024,'Sedan'],X3:[2004,2024,'SUV / Crossover'],X5:[2000,2024,'SUV / Crossover'],X1:[2013,2024,'SUV / Crossover'],'7 Series':[1990,2024,'Sedan'],'4 Series':[2014,2024,'Coupe'],X7:[2019,2024,'SUV / Crossover']},'Mercedes-Benz':{'C-Class':[1994,2024,'Sedan'],'E-Class':[1990,2024,'Sedan'],GLC:[2016,2024,'SUV / Crossover'],GLE:[2016,2024,'SUV / Crossover'],'A-Class':[2019,2024,'Sedan'],'S-Class':[1990,2024,'Sedan'],GLA:[2015,2024,'SUV / Crossover'],GLB:[2020,2024,'SUV / Crossover']},Lexus:{RX:[1998,2024,'SUV / Crossover'],ES:[1990,2024,'Sedan'],NX:[2015,2024,'SUV / Crossover'],IS:[2001,2024,'Sedan'],GX:[2003,2024,'SUV / Crossover'],UX:[2019,2024,'SUV / Crossover'],LS:[1990,2024,'Sedan'],LX:[1996,2024,'SUV / Crossover']},Acura:{MDX:[2001,2024,'SUV / Crossover'],RDX:[2007,2024,'SUV / Crossover'],TLX:[2015,2024,'Sedan'],ILX:[2013,2022,'Sedan'],RLX:[2014,2020,'Sedan']},Mitsubishi:{Outlander:[2003,2024,'SUV / Crossover'],'Eclipse Cross':[2018,2024,'SUV / Crossover'],Galant:[1990,2012,'Sedan'],Lancer:[2002,2017,'Sedan'],Mirage:[2014,2024,'Hatchback']},Chrysler:{'300':[2005,2023,'Sedan'],Pacifica:[2017,2024,'Van'],'Town & Country':[1990,2016,'Van'],'200':[2011,2017,'Sedan']},Buick:{Enclave:[2008,2024,'SUV / Crossover'],Encore:[2013,2024,'SUV / Crossover'],LaCrosse:[2005,2019,'Sedan'],Envision:[2016,2024,'SUV / Crossover']},Cadillac:{Escalade:[1999,2024,'SUV / Crossover'],XT5:[2017,2024,'SUV / Crossover'],CT5:[2020,2024,'Sedan'],XT4:[2019,2024,'SUV / Crossover'],CTS:[2003,2019,'Sedan'],ATS:[2013,2019,'Sedan']},Lincoln:{Navigator:[1998,2024,'SUV / Crossover'],Aviator:[2020,2024,'SUV / Crossover'],Corsair:[2020,2024,'SUV / Crossover'],Nautilus:[2019,2024,'SUV / Crossover'],MKZ:[2007,2020,'Sedan']}};
+
+const STYLES=['Sedan','SUV / Crossover','Truck','Van','Coupe','Hatchback'];
+const CUR=new Date().getFullYear();
+
+function fillYears(minSel,maxSel,start,end){
+  minSel.innerHTML='<option value="">From Year</option>';
+  maxSel.innerHTML='<option value="">To Year</option>';
+  for(let y=start;y<=end;y++){
+    minSel.innerHTML+=`<option>${y}</option>`;
+    maxSel.innerHTML+=`<option>${y}</option>`;
+  }
+}
+
+function fillStyles(sel,autoSelect){
+  sel.innerHTML='<option value="">Body Style</option>';
+  STYLES.forEach(s=>sel.innerHTML+=`<option${s===autoSelect?' selected':''}>${s}</option>`);
+}
+
+function updateModels(){
+  const make=document.getElementById('make-select').value;
+  const modelSel=document.getElementById('model-select');
+  const yMin=document.getElementById('year-min');
+  const yMax=document.getElementById('year-max');
+  const body=document.getElementById('body-select');
+  modelSel.innerHTML='<option value="">Any Model</option>';
+  fillStyles(body,'');
+  if(!make||!DATA[make]){fillYears(yMin,yMax,1990,CUR);return;}
+  Object.keys(DATA[make]).sort().forEach(m=>modelSel.innerHTML+=`<option>${m}</option>`);
+  const starts=Object.values(DATA[make]).map(v=>v[0]);
+  fillYears(yMin,yMax,Math.min(...starts),CUR);
+}
+
+function updateFromModel(){
+  const make=document.getElementById('make-select').value;
+  const model=document.getElementById('model-select').value;
+  const yMin=document.getElementById('year-min');
+  const yMax=document.getElementById('year-max');
+  const body=document.getElementById('body-select');
+  if(!make||!model||!DATA[make]||!DATA[make][model]){updateModels();return;}
+  const[start,end,style]=DATA[make][model];
+  fillYears(yMin,yMax,start,Math.min(end,CUR));
+  fillStyles(body,style);
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  fillStyles(document.getElementById('body-select'),'');
+  fillYears(document.getElementById('year-min'),document.getElementById('year-max'),1990,CUR);
+});
+</script>
 </body>
 </html>
