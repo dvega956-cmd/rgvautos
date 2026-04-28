@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>List Your Lot — RGV Autos</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0A1628;--navy2:#111f3a;--orange:#F97316;--orange2:#ea6a0a;--white:#ffffff;--gray:#f4f5f7;--muted:#6b7280;--text:#1a2332;--border:#dde1e8;}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;color:var(--text);background:var(--white);line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.6rem;color:var(--white)}
+.nav-logo span{color:var(--orange)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{color:rgba(255,255,255,.75);font-size:.9rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--orange);color:var(--white)!important;padding:.45rem 1.2rem;border-radius:6px;font-weight:600!important}
+
+/* HERO */
+.hero{background:var(--navy);padding:5rem 2rem 5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 110%,rgba(249,115,22,.2),transparent 70%);pointer-events:none}
+.hero-badge{display:inline-block;background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.4);color:var(--orange);font-size:.78rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:.35rem 1rem;border-radius:99px;margin-bottom:1.5rem}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.6rem,6vw,4.5rem);color:var(--white);line-height:1.05;margin-bottom:1rem}
+.hero h1 span{color:var(--orange)}
+.hero p{color:rgba(255,255,255,.65);font-size:1.1rem;max-width:560px;margin:0 auto 2.5rem}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--orange);color:var(--white);padding:.85rem 2.2rem;border-radius:8px;font-family:'Barlow',sans-serif;font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:background .2s}
+.btn-primary:hover{background:var(--orange2)}
+.btn-secondary{background:transparent;color:var(--white);padding:.85rem 2.2rem;border-radius:8px;font-family:'Barlow',sans-serif;font-weight:600;font-size:1rem;border:2px solid rgba(255,255,255,.3);cursor:pointer;transition:border .2s}
+.btn-secondary:hover{border-color:rgba(255,255,255,.7)}
+
+/* STATS BAR */
+.stats-bar{background:var(--orange);padding:1.5rem 2rem;display:flex;justify-content:center;gap:5rem;flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2rem;color:var(--white);line-height:1}
+.stat-label{font-size:.82rem;color:rgba(255,255,255,.8);font-weight:500;margin-top:2px}
+
+/* SECTIONS */
+.section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:.78rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2.4rem;color:var(--navy);margin-bottom:1rem;line-height:1.1}
+.section-sub{color:var(--muted);font-size:1.05rem;max-width:580px;line-height:1.7}
+
+/* HOW IT WORKS */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-top:3rem}
+.step{text-align:center;padding:2rem 1.5rem}
+.step-num{width:52px;height:52px;background:var(--orange);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;margin:0 auto 1.25rem}
+.step h3{font-weight:600;font-size:1.05rem;color:var(--navy);margin-bottom:.5rem}
+.step p{font-size:.9rem;color:var(--muted);line-height:1.6}
+
+/* PRICING */
+.pricing{background:var(--gray);padding:5rem 2rem}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
+.plan{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative}
+.plan.featured{border:2px solid var(--orange)}
+.plan-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--orange);color:var(--white);font-size:.75rem;font-weight:700;padding:.3rem 1.1rem;border-radius:99px;white-space:nowrap;letter-spacing:.5px}
+.plan-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;color:var(--navy);margin-bottom:.25rem}
+.plan-price{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:3rem;color:var(--navy);line-height:1;margin:.75rem 0 .25rem}
+.plan-price sup{font-size:1.4rem;vertical-align:top;margin-top:.4rem}
+.plan-price span{font-size:1rem;font-weight:400;color:var(--muted)}
+.plan-desc{font-size:.88rem;color:var(--muted);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:2rem}
+.plan-features li{font-size:.9rem;color:var(--text);display:flex;align-items:flex-start;gap:.6rem}
+.plan-features li::before{content:'✓';color:var(--orange);font-weight:700;flex-shrink:0;margin-top:1px}
+.plan-features li.no::before{content:'✕';color:#d1d5db}
+.plan-features li.no{color:var(--muted)}
+.plan-btn{width:100%;padding:.75rem;border-radius:8px;font-family:'Barlow',sans-serif;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:all .2s}
+.plan-btn.primary{background:var(--orange);color:var(--white)}
+.plan-btn.primary:hover{background:var(--orange2)}
+.plan-btn.outline{background:transparent;color:var(--navy);border:1.5px solid var(--border)}
+.plan-btn.outline:hover{border-color:var(--navy)}
+
+/* WHY US */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem}
+.why-card{background:var(--gray);border-radius:12px;padding:1.5rem}
+.why-icon{font-size:1.6rem;margin-bottom:.75rem}
+.why-card h3{font-weight:600;color:var(--navy);margin-bottom:.4rem}
+.why-card p{font-size:.88rem;color:var(--muted);line-height:1.6}
+
+/* TESTIMONIAL */
+.testimonial-section{background:var(--navy);padding:5rem 2rem;text-align:center}
+.testimonial-section h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2rem;color:var(--white);margin-bottom:3rem}
+.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:900px;margin:0 auto}
+.tcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:1.5rem;text-align:left}
+.tcard p{color:rgba(255,255,255,.75);font-size:.92rem;line-height:1.7;margin-bottom:1rem;font-style:italic}
+.tcard-author{display:flex;align-items:center;gap:.75rem}
+.tcard-avatar{width:38px;height:38px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--white);font-size:.9rem}
+.tcard-name{font-weight:600;font-size:.9rem;color:var(--white)}
+.tcard-biz{font-size:.78rem;color:rgba(255,255,255,.5)}
+
+/* SIGNUP FORM */
+.signup-section{padding:5rem 2rem;background:var(--white)}
+.signup-wrap{max-width:640px;margin:0 auto}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:.85rem;font-weight:600;color:var(--navy)}
+.form-group input,.form-group select,.form-group textarea{padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-family:'Barlow',sans-serif;font-size:.95rem;color:var(--text);transition:border .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--orange)}
+.form-group textarea{resize:vertical;min-height:90px}
+.form-submit{grid-column:1/-1;margin-top:.5rem}
+.form-submit button{width:100%;padding:.85rem;background:var(--orange);color:var(--white);border:none;border-radius:8px;font-family:'Barlow',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;transition:background .2s}
+.form-submit button:hover{background:var(--orange2)}
+.form-note{font-size:.78rem;color:var(--muted);text-align:center;margin-top:1rem}
+
+/* FAQ */
+.faq{background:var(--gray);padding:5rem 2rem}
+.faq-list{margin-top:2.5rem;display:flex;flex-direction:column;gap:1rem;max-width:720px}
+.faq-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;cursor:pointer}
+.faq-q{font-weight:600;color:var(--navy);font-size:.95rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.faq-q::after{content:'+';color:var(--orange);font-size:1.3rem;font-weight:300;flex-shrink:0}
+.faq-item.open .faq-q::after{content:'−'}
+.faq-a{display:none;font-size:.9rem;color:var(--muted);margin-top:.85rem;line-height:1.7;border-top:1px solid var(--border);padding-top:.85rem}
+.faq-item.open .faq-a{display:block}
+
+footer{background:var(--navy2);color:rgba(255,255,255,.5);padding:2.5rem 2rem;text-align:center;font-size:.85rem}
+footer strong{color:rgba(255,255,255,.85);font-family:'Barlow Condensed',sans-serif;font-size:1.1rem}
+.footer-links{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.footer-links a{color:rgba(255,255,255,.45);transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+
+@media(max-width:600px){.stats-bar{gap:2rem}.form-grid{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><a href="index.html">RGV<span>Autos</span></a></div>
+  <div class="nav-links">
+    <a href="index.html">Browse Cars</a>
+    <a href="index.html#dealers">Dealers</a>
+    <a href="#signup" class="nav-cta">Get Started Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">&#127968; For Brownsville &amp; RGV Dealerships</div>
+  <h1>Put Your Lot<br/><span>In Front of Every Local Buyer</span></h1>
+  <p>RGV Autos is Brownsville's only centralized used car platform. Get your inventory in front of serious local buyers — for less than you spend boosting one Facebook post.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Start Your Free Trial</button>
+    <button class="btn-secondary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">View Pricing</button>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Local Brownsville buyers</div></div>
+  <div class="stat-item"><div class="stat-num">Free</div><div class="stat-label">3-month trial, no card needed</div></div>
+  <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">Your inventory online always</div></div>
+  <div class="stat-item"><div class="stat-num">$0</div><div class="stat-label">To get started today</div></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Simple process</div>
+    <div class="section-title">Up and running in 48 hours</div>
+    <p class="section-sub">We do the heavy lifting. You focus on selling cars. Here's how we get your lot live on the platform.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Sign Up Free</h3>
+        <p>Fill out the short form below. No credit card, no commitment. Your 3-month trial starts the day you go live.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Add Your Inventory</h3>
+        <p>Use your dealer dashboard to upload vehicles yourself — just fill in the details and snap a few photos from your phone. Or add our photo service and we come to you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Go Live &amp; Get Leads</h3>
+        <p>Your listings are live on RGV Autos within 48 hours. Every buyer inquiry goes directly to your phone or email.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Manage Your Inventory</h3>
+        <p>Once set up, you get your own dealer dashboard to add, update, or remove vehicles anytime from your phone.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<div class="section" style="background:var(--gray);padding-top:4rem;padding-bottom:4rem">
+  <div class="container">
+    <div class="section-label">Why RGV Autos</div>
+    <div class="section-title">More than a listing site</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">&#127968;</div>
+        <h3>Built for Brownsville</h3>
+        <p>Unlike CarGurus or AutoTrader, we're exclusively local. Every buyer on this platform is in your backyard.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">&#128247;</div>
+        <h3>We Handle Photos</h3>
+        <p>Professional photos drive sales. We photograph your inventory so your listings stand out from day one.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">&#128241;</div>
+        <h3>Leads Go Straight to You</h3>
+        <p>No middleman. When a buyer clicks Contact, their message goes directly to your phone or email — instantly.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">&#11088;</div>
+        <h3>Build Your Reputation</h3>
+        <p>Verified buyer reviews on your dealer profile help you build trust and stand out from other local lots.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">&#128200;</div>
+        <h3>See Your Numbers</h3>
+        <p>Your dealer dashboard shows how many buyers viewed your listings, clicked your contact form, and more.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">&#128275;</div>
+        <h3>No Long-Term Contract</h3>
+        <p>Month-to-month after your free trial. If it's not selling cars for you, cancel anytime — no questions asked.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="section" id="pricing">
+  <div class="container">
+    <div class="section-label">Pricing</div>
+    <div class="section-title">Simple, transparent pricing</div>
+    <p class="section-sub">Every plan includes your own dealer dashboard so you can manage your inventory yourself — add cars, update prices, mark sold, all from your phone. Photography is available as an optional add-on if you'd rather we handle it for you.</p>
+    <div class="pricing-grid">
+
+      <div class="plan">
+        <div class="plan-name">Free Trial</div>
+        <div class="plan-price"><sup>$</sup>0<span>/3 months</span></div>
+        <p class="plan-desc">Get live and prove the platform works for your lot before spending a dollar. No credit card required.</p>
+        <ul class="plan-features">
+          <li>Up to 15 vehicle listings</li>
+          <li>Your own dealer profile page</li>
+          <li>Dealer dashboard — manage inventory yourself</li>
+          <li>Add, edit &amp; remove vehicles anytime</li>
+          <li>Mark cars as sold instantly</li>
+          <li>Direct buyer leads sent to your email</li>
+          <li>Basic listing view analytics</li>
+          <li class="no">Featured placement in search</li>
+          <li class="no">Verified Dealer badge</li>
+          <li class="no">Priority lead notifications (text + email)</li>
+        </ul>
+        <button class="plan-btn outline" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Start Free Trial</button>
+      </div>
+
+      <div class="plan featured">
+        <div class="plan-badge">MOST POPULAR</div>
+        <div class="plan-name">Standard</div>
+        <div class="plan-price"><sup>$</sup>79<span>/month</span></div>
+        <p class="plan-desc">For active lots ready to grow. Full platform access, priority visibility, and the Verified Dealer badge buyers trust.</p>
+        <ul class="plan-features">
+          <li>Unlimited vehicle listings</li>
+          <li>Your own dealer profile page</li>
+          <li>Dealer dashboard — manage inventory yourself</li>
+          <li>Add, edit &amp; remove vehicles anytime</li>
+          <li>Mark cars as sold instantly</li>
+          <li>Direct buyer leads via email &amp; text</li>
+          <li>Full analytics dashboard</li>
+          <li>Featured placement in search results</li>
+          <li>Verified Dealer badge</li>
+          <li>Priority lead notifications (text + email)</li>
+        </ul>
+        <button class="plan-btn primary" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+
+      <div class="plan">
+        <div class="plan-name">Featured</div>
+        <div class="plan-price"><sup>$</sup>129<span>/month</span></div>
+        <p class="plan-desc">Maximum visibility for high-volume lots. Top-of-search placement, social promotion, and dedicated support.</p>
+        <ul class="plan-features">
+          <li>Unlimited vehicle listings</li>
+          <li>Premium dealer profile page</li>
+          <li>Dealer dashboard — manage inventory yourself</li>
+          <li>Add, edit &amp; remove vehicles anytime</li>
+          <li>Mark cars as sold instantly</li>
+          <li>Direct buyer leads via email &amp; text</li>
+          <li>Full analytics dashboard</li>
+          <li>Top of search results placement</li>
+          <li>Verified Dealer badge + Featured tag</li>
+          <li>Social media promotion of your listings</li>
+        </ul>
+        <button class="plan-btn outline" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--muted)">All plans are month-to-month after the free trial. Cancel anytime. No setup fees. No long-term contracts.</p>
+  </div>
+</div>
+
+<!-- PHOTO ADD-ONS -->
+<div class="section" style="background:var(--navy);padding-top:4rem;padding-bottom:4rem">
+  <div class="container">
+    <div class="section-label" style="color:var(--orange)">Optional add-on</div>
+    <div class="section-title" style="color:var(--white)">Don't want to deal with photos? We've got you.</div>
+    <p class="section-sub" style="color:rgba(255,255,255,.6);margin-bottom:2.5rem">Every plan lets you upload your own photos directly from your phone — it's simple and free. But if you'd rather hand it off, we offer professional on-site photo sessions so your listings look sharp without you lifting a finger.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem">
+
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:1.75rem">
+        <div style="font-size:1.5rem;margin-bottom:.75rem">&#128247;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:var(--white);margin-bottom:.25rem">One-Time Setup Session</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.2rem;color:var(--orange);margin:.5rem 0">$100</div>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:1rem">We come to your lot, photograph up to 20 vehicles, and upload everything directly to your listings. Perfect for getting started fast. Additional vehicles $5 each.</p>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.4)">One-time fee &mdash; schedule anytime</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(249,115,22,.4);border-radius:14px;padding:1.75rem;position:relative">
+        <div style="position:absolute;top:-12px;left:1.5rem;background:var(--orange);color:var(--white);font-size:.7rem;font-weight:700;padding:.25rem .85rem;border-radius:99px;letter-spacing:.5px">HANDS-OFF</div>
+        <div style="font-size:1.5rem;margin-bottom:.75rem">&#128260;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:var(--white);margin-bottom:.25rem">Monthly Photo Refresh</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.2rem;color:var(--orange);margin:.5rem 0">$50<span style="font-size:1rem;font-weight:400;color:rgba(255,255,255,.5)">/month</span></div>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:1rem">We visit your lot once a month, photograph all new arrivals, update sold vehicles, and keep your listings fresh automatically. Ideal for busy lots that turn inventory regularly.</p>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.4)">Add to any paid plan &mdash; cancel anytime</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:1.75rem">
+        <div style="font-size:1.5rem;margin-bottom:.75rem">&#128241;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:var(--white);margin-bottom:.25rem">Self-Managed (Free)</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.2rem;color:var(--orange);margin:.5rem 0">$0</div>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:1rem">Your dealer dashboard lets you upload photos straight from your phone in seconds. Add a new car, snap a few photos, fill in the details, and it's live. No experience needed &mdash; we'll show you how.</p>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.4)">Included with every plan</div>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:2rem;font-size:.85rem;color:rgba(255,255,255,.35)">Photo add-ons can be requested at any time after signup. Not required to get started.</p>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonial-section">
+  <h2>What Local Dealers Are Saying</h2>
+  <div class="testimonials">
+    <div class="tcard">
+      <p>"Before RGV Autos, my cars sat on the lot for weeks. Now buyers are calling the same day a car goes up. It's the best $79 I spend every month."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">JR</div>
+        <div><div class="tcard-name">Jose R.</div><div class="tcard-biz">Independent Dealer, Brownsville</div></div>
+      </div>
+    </div>
+    <div class="tcard">
+      <p>"I was skeptical at first — I've tried Facebook ads and they never worked well. RGV Autos brings buyers who are actually looking for a car right now."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">ML</div>
+        <div><div class="tcard-name">Maria L.</div><div class="tcard-biz">Used Car Lot, Southmost Rd</div></div>
+      </div>
+    </div>
+    <div class="tcard">
+      <p>"The free trial sold two cars in the first month. I signed up for the Standard plan immediately. Worth every penny for the local exposure alone."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">CA</div>
+        <div><div class="tcard-name">Carlos A.</div><div class="tcard-biz">Family Dealership, N Frontage Rd</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNUP FORM -->
+<div class="signup-section" id="signup">
+  <div class="signup-wrap">
+    <div class="section-label">Get Started</div>
+    <div class="section-title">Claim your free 3-month trial</div>
+    <p class="section-sub" style="max-width:100%">Fill out the form below and we'll reach out within 24 hours to schedule your first photo session and get your inventory live.</p>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Your Name *</label>
+        <input type="text" placeholder="First and last name"/>
+      </div>
+      <div class="form-group">
+        <label>Dealership Name *</label>
+        <input type="text" placeholder="Your lot's name"/>
+      </div>
+      <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" placeholder="(956) 000-0000"/>
+      </div>
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" placeholder="you@yourlot.com"/>
+      </div>
+      <div class="form-group full">
+        <label>Dealership Address *</label>
+        <input type="text" placeholder="Street address, Brownsville TX"/>
+      </div>
+      <div class="form-group">
+        <label>Approx. # of Vehicles</label>
+        <select>
+          <option value="">Select range</option>
+          <option>1 – 10 vehicles</option>
+          <option>11 – 25 vehicles</option>
+          <option>26 – 50 vehicles</option>
+          <option>50+ vehicles</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Best Time to Call</label>
+        <select>
+          <option value="">Select time</option>
+          <option>Morning (9am – 12pm)</option>
+          <option>Afternoon (12pm – 3pm)</option>
+          <option>Late Afternoon (3pm – 6pm)</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label>Anything else you'd like us to know?</label>
+        <textarea placeholder="Questions, concerns, or details about your lot..."></textarea>
+      </div>
+      <div class="form-submit">
+        <button onclick="handleSubmit()">Submit — Start My Free Trial</button>
+      </div>
+    </div>
+    <p class="form-note">By submitting this form you agree to be contacted by RGV Autos regarding your free trial. We never share your information with third parties.</p>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq" id="faq">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <div class="section-title">Common questions</div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Do I need a website to list on RGV Autos?</div>
+        <div class="faq-a">No. RGV Autos is your online presence. You don't need your own website — we give you a full dealer profile page, your own listing section, and a direct contact form for buyers. Many of our dealers use RGV Autos as their only online presence.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Can I manage my own inventory, or do I have to rely on you?</div>
+        <div class="faq-a">Every plan includes your own dealer dashboard — a simple login where you can add new vehicles, update prices, edit details, upload photos straight from your phone, and mark cars as sold the moment they're gone. Sold vehicles disappear from the public listing automatically. You're never waiting on us to make a change. That said, if you'd rather hand it off entirely, our photo add-on service means we come to your lot and handle everything for you.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Do I have to pay for photography, or can I upload my own photos?</div>
+        <div class="faq-a">Photography is completely optional and never required. Every plan lets you upload your own photos directly from your phone — just snap a few shots of the car and attach them when adding a listing. It takes about 2 minutes. If you'd prefer we handle it, we offer a one-time setup session ($100 for up to 20 vehicles) or a monthly refresh add-on ($50/month) where we visit your lot regularly and keep everything updated. Most dealers start by uploading their own photos and add the service later once they see the results.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What happens after my free trial ends?</div>
+        <div class="faq-a">After 3 months, your trial transitions to a paid plan — Standard at $79/month or Featured at $129/month. We'll reach out before your trial ends to discuss your options. If you choose not to continue, your listings are simply removed with no charge and no hard feelings.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How do buyers contact me — does RGV Autos take a cut of the sale?</div>
+        <div class="faq-a">Never. When a buyer clicks "Contact" on your listing, their message goes directly to your email and phone number. We are not a middleman in the sale. We charge a flat monthly fee and you keep 100% of every sale you make.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">I already have a Facebook page. Why do I need this?</div>
+        <div class="faq-a">Facebook is great for visibility but terrible for car shopping. Buyers can't search your inventory by price, year, or mileage. Your posts disappear from feeds within hours. RGV Autos gives buyers a searchable, organized catalog of your inventory that's live 24/7 — and every listing is optimized to show up in Google searches for local used cars in Brownsville.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How long does it take to go live?</div>
+        <div class="faq-a">If you manage your own inventory, you can be live the same day you sign up — just log into your dashboard, add your first few vehicles with photos, and they're published immediately. If you'd like us to handle the initial setup and photography, we aim for 48 hours from signup to live listings.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>RGVAutos.com</strong>
+  <div class="footer-links"><a href="index.html">Browse Cars</a><a href="index.html#dealers">Dealers</a><a href="#">About</a><a href="#">Contact</a><a href="#">Privacy Policy</a></div>
+  <p>&copy; 2025 RGV Autos &mdash; Brownsville, Texas &mdash; All rights reserved</p>
+</footer>
+
+<script>
+function toggleFaq(el){
+  const wasOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)el.classList.add('open');
+}
+function handleSubmit(){
+  const name=document.querySelector('input[placeholder="First and last name"]').value;
+  const lot=document.querySelector('input[placeholder="Your lot\'s name"]').value;
+  if(!name||!lot){alert('Please fill in at least your name and dealership name.');return;}
+  alert(`Thanks, ${name}! We received your request for ${lot}.\n\nWe'll be in touch within 24 hours to get your lot live on RGV Autos.`);
+}
+</script>
+</body>
+</html>
