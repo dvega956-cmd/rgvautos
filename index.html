@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RGV Autos — Find Your Next Car in the Rio Grande Valley</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0A1628;
+  --navy2:#111f3a;
+  --orange:#F97316;
+  --orange2:#ea6a0a;
+  --white:#ffffff;
+  --gray:#f4f5f7;
+  --gray2:#e8eaed;
+  --muted:#6b7280;
+  --text:#1a2332;
+  --border:#dde1e8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;color:var(--text);background:var(--white);line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* NAV */
+nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.6rem;color:var(--white);letter-spacing:.5px}
+.nav-logo span{color:var(--orange)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{color:rgba(255,255,255,.75);font-size:.9rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--orange);color:var(--white)!important;padding:.45rem 1.2rem;border-radius:6px;font-weight:600!important;transition:background .2s!important}
+.nav-cta:hover{background:var(--orange2)!important}
+
+/* HERO */
+.hero{background:var(--navy);padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 120%,rgba(249,115,22,.18) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-block;background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.4);color:var(--orange);font-size:.78rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:.35rem 1rem;border-radius:99px;margin-bottom:1.5rem}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.8rem,7vw,5rem);color:var(--white);line-height:1.05;margin-bottom:1rem;letter-spacing:-.5px}
+.hero h1 span{color:var(--orange)}
+.hero p{color:rgba(255,255,255,.65);font-size:1.1rem;max-width:520px;margin:0 auto 2.5rem}
+
+/* SEARCH BOX */
+.search-box{background:var(--white);border-radius:14px;padding:1.5rem;max-width:820px;margin:0 auto;box-shadow:0 25px 60px rgba(0,0,0,.4)}
+.search-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+.search-row select,.search-row input{width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-family:'Barlow',sans-serif;font-size:.9rem;color:var(--text);background:var(--white);appearance:none;-webkit-appearance:none;cursor:pointer;transition:border .2s}
+.search-row select:focus,.search-row input:focus{outline:none;border-color:var(--orange)}
+.search-row2{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:.75rem;align-items:end}
+.search-btn{background:var(--orange);color:var(--white);border:none;padding:.65rem 2rem;border-radius:8px;font-family:'Barlow',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s}
+.search-btn:hover{background:var(--orange2)}
+
+/* STATS BAR */
+.stats{background:var(--gray);border-bottom:1px solid var(--border);padding:1.2rem 2rem;display:flex;justify-content:center;gap:4rem}
+.stat{text-align:center}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.6rem;color:var(--navy);line-height:1}
+.stat-label{font-size:.8rem;color:var(--muted);font-weight:500;margin-top:2px}
+
+/* SECTIONS */
+section{padding:4rem 2rem}
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2rem}
+.section-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2rem;color:var(--navy)}
+.section-header a{font-size:.9rem;color:var(--orange);font-weight:600}
+.section-header a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto}
+
+/* CAR CARDS */
+.cars-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
+.car-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer}
+.car-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+.car-img{height:185px;background:var(--gray2);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.car-img-bg{width:100%;height:100%;object-fit:cover}
+.car-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.car-badge{position:absolute;top:10px;left:10px;background:var(--navy);color:var(--white);font-size:.7rem;font-weight:600;padding:.25rem .6rem;border-radius:4px;letter-spacing:.5px}
+.car-badge.new{background:var(--orange)}
+.car-info{padding:1rem}
+.car-price{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.5rem;color:var(--orange);margin-bottom:.2rem}
+.car-name{font-weight:600;font-size:1rem;color:var(--navy);margin-bottom:.5rem}
+.car-specs{display:flex;gap:.75rem;flex-wrap:wrap}
+.car-spec{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:3px}
+.car-footer{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-top:1px solid var(--border);background:var(--gray)}
+.car-dealer{font-size:.78rem;color:var(--muted);font-weight:500}
+.car-contact{background:var(--navy);color:var(--white);font-size:.78rem;font-weight:600;padding:.3rem .85rem;border-radius:5px;border:none;cursor:pointer;transition:background .2s}
+.car-contact:hover{background:var(--orange)}
+
+/* DEALER CARDS */
+.dealers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
+.dealer-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:box-shadow .2s;cursor:pointer}
+.dealer-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.dealer-head{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
+.dealer-avatar{width:46px;height:46px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--white);flex-shrink:0}
+.dealer-name{font-weight:600;font-size:.95rem;color:var(--navy)}
+.dealer-addr{font-size:.78rem;color:var(--muted);margin-top:1px}
+.dealer-stats{display:flex;gap:1rem;margin-bottom:1rem}
+.d-stat{display:flex;flex-direction:column}
+.d-stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:var(--navy)}
+.d-stat-label{font-size:.72rem;color:var(--muted)}
+.dealer-stars{color:var(--orange);font-size:.85rem;letter-spacing:1px}
+.dealer-badge{display:inline-block;font-size:.7rem;font-weight:600;padding:.2rem .6rem;border-radius:4px;margin-top:.5rem}
+.dealer-badge.verified{background:#dcfce7;color:#166534}
+.dealer-badge.trial{background:#fef9c3;color:#854d0e}
+
+/* WHY SECTION */
+.why{background:var(--navy);color:var(--white)}
+.why h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2.4rem;color:var(--white);margin-bottom:.5rem}
+.why p.sub{color:rgba(255,255,255,.6);margin-bottom:3rem;font-size:1.05rem}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.why-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.5rem}
+.why-icon{width:42px;height:42px;background:rgba(249,115,22,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem}
+.why-card h3{font-weight:600;font-size:1rem;color:var(--white);margin-bottom:.4rem}
+.why-card p{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.6}
+
+/* NOTIFY */
+.notify{background:var(--orange);padding:3.5rem 2rem;text-align:center}
+.notify h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.2rem;color:var(--white);margin-bottom:.5rem}
+.notify p{color:rgba(255,255,255,.85);margin-bottom:1.5rem}
+.notify-form{display:flex;gap:.75rem;max-width:460px;margin:0 auto;justify-content:center}
+.notify-form input{flex:1;padding:.65rem 1rem;border:none;border-radius:8px;font-family:'Barlow',sans-serif;font-size:.95rem}
+.notify-form input:focus{outline:none}
+.notify-form button{background:var(--navy);color:var(--white);border:none;padding:.65rem 1.4rem;border-radius:8px;font-family:'Barlow',sans-serif;font-weight:600;cursor:pointer;white-space:nowrap}
+
+/* FOOTER */
+footer{background:var(--navy2);color:rgba(255,255,255,.5);padding:2.5rem 2rem;text-align:center;font-size:.85rem}
+footer strong{color:rgba(255,255,255,.85);font-family:'Barlow Condensed',sans-serif;font-size:1.1rem}
+.footer-links{display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap}
+.footer-links a{color:rgba(255,255,255,.45);transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+
+/* RESPONSIVE */
+@media(max-width:680px){
+  .search-row,.search-row2{grid-template-columns:1fr 1fr}
+  .search-btn{grid-column:1/-1}
+  .stats{gap:1.5rem;flex-wrap:wrap}
+  .nav-links{display:none}
+}
+
+/* CAR SVG PLACEHOLDERS */
+.car-silhouette{opacity:.18}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">RGV<span>Autos</span></div>
+  <div class="nav-links">
+    <a href="#listings">Browse Cars</a>
+    <a href="#dealers">Dealers</a>
+    <a href="#">Sell My Car</a>
+    <a href="#" class="nav-cta">List Your Lot</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">&#127968; Serving Brownsville &amp; the Rio Grande Valley</div>
+  <h1>Find Your Next Car<br/><span>Right Here in the Valley</span></h1>
+  <p>Browse hundreds of local used cars from trusted RGV dealerships — all in one place.</p>
+
+  <div class="search-box">
+    <div class="search-row">
+      <select><option value="">Any Make</option><option>Toyota</option><option>Honda</option><option>Chevrolet</option><option>Ford</option><option>Nissan</option><option>Dodge</option><option>Jeep</option><option>Hyundai</option><option>Kia</option></select>
+      <select><option value="">Any Model</option><option>Camry</option><option>Civic</option><option>F-150</option><option>Silverado</option><option>Altima</option><option>Sentra</option><option>Ram 1500</option></select>
+      <select><option value="">Any Year</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option><option>2019</option><option>2018</option><option>2017</option><option>2016 &amp; older</option></select>
+      <select><option value="">Body Style</option><option>Sedan</option><option>SUV / Crossover</option><option>Truck</option><option>Van</option><option>Coupe</option><option>Hatchback</option></select>
+    </div>
+    <div class="search-row2">
+      <select><option value="">Min Price</option><option>$3,000</option><option>$5,000</option><option>$8,000</option><option>$10,000</option><option>$15,000</option></select>
+      <select><option value="">Max Price</option><option>$10,000</option><option>$15,000</option><option>$20,000</option><option>$25,000</option><option>$30,000+</option></select>
+      <select><option value="">Max Mileage</option><option>Under 30k</option><option>Under 60k</option><option>Under 100k</option><option>Under 150k</option><option>Any</option></select>
+      <button class="search-btn">Search Cars</button>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Local Dealerships</div></div>
+  <div class="stat"><div class="stat-num">115+</div><div class="stat-label">Cars Listed</div></div>
+  <div class="stat"><div class="stat-num">Brownsville</div><div class="stat-label">Coverage Area</div></div>
+  <div class="stat"><div class="stat-num">Free</div><div class="stat-label">To Browse</div></div>
+</div>
+
+<!-- FEATURED LISTINGS -->
+<section id="listings">
+  <div class="container">
+    <div class="section-header">
+      <h2>Featured Listings</h2>
+      <a href="#">View all cars &rarr;</a>
+    </div>
+    <div class="cars-grid">
+
+      <div class="car-card">
+        <div class="car-img" style="background:linear-gradient(135deg,#1a2a4a 0%,#2d4a7a 100%)">
+          <svg class="car-silhouette" width="180" height="80" viewBox="0 0 200 80" fill="white"><path d="M30 55 L40 30 Q50 15 80 12 L130 12 Q155 12 165 30 L175 55 L185 55 L185 62 L15 62 L15 55 Z M55 12 L75 12 L70 30 L45 30 Z M125 12 L155 12 L160 30 L130 30 Z"/><circle cx="55" cy="62" r="12"/><circle cx="150" cy="62" r="12"/></svg>
+          <div class="car-badge new">New</div>
+        </div>
+        <div class="car-info">
+          <div class="car-price">$8,500</div>
+          <div class="car-name">2017 Toyota Camry SE</div>
+          <div class="car-specs">
+            <span class="car-spec">&#128337; 78,400 mi</span>
+            <span class="car-spec">&#9881;&#65039; Automatic</span>
+            <span class="car-spec">&#127959; Silver</span>
+          </div>
+        </div>
+        <div class="car-footer">
+          <span class="car-dealer">CL Auto Sales Inc.</span>
+          <button class="car-contact">Contact</button>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-img" style="background:linear-gradient(135deg,#1a3a2a 0%,#2d6a4a 100%)">
+          <svg class="car-silhouette" width="200" height="85" viewBox="0 0 220 85" fill="white"><path d="M20 60 L25 35 Q30 18 55 14 L100 12 Q125 12 140 20 L175 35 L195 60 L205 60 L205 68 L10 68 L10 60 Z M50 14 L75 14 L72 35 L42 35 Z M105 12 L140 14 L155 35 L100 35 Z"/><circle cx="50" cy="68" r="13"/><circle cx="165" cy="68" r="13"/></svg>
+          <div class="car-badge">Used</div>
+        </div>
+        <div class="car-info">
+          <div class="car-price">$14,200</div>
+          <div class="car-name">2019 Honda CR-V LX</div>
+          <div class="car-specs">
+            <span class="car-spec">&#128337; 52,100 mi</span>
+            <span class="car-spec">&#9881;&#65039; Automatic</span>
+            <span class="car-spec">&#127959; White</span>
+          </div>
+        </div>
+        <div class="car-footer">
+          <span class="car-dealer">Brownsville Auto Credit</span>
+          <button class="car-contact">Contact</button>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-img" style="background:linear-gradient(135deg,#2a1a1a 0%,#5a2d2d 100%)">
+          <svg class="car-silhouette" width="200" height="85" viewBox="0 0 230 85" fill="white"><path d="M15 58 L22 32 Q28 16 55 13 L110 11 Q138 11 158 20 L195 40 L210 58 L215 58 L215 66 L8 66 L8 58 Z M50 13 L80 13 L77 35 L45 35 Z M115 11 L158 14 L170 35 L112 35 Z"/><circle cx="52" cy="66" r="13"/><circle cx="172" cy="66" r="13"/></svg>
+          <div class="car-badge new">New</div>
+        </div>
+        <div class="car-info">
+          <div class="car-price">$11,900</div>
+          <div class="car-name">2018 Nissan Altima SV</div>
+          <div class="car-specs">
+            <span class="car-spec">&#128337; 65,200 mi</span>
+            <span class="car-spec">&#9881;&#65039; Automatic</span>
+            <span class="car-spec">&#127959; Black</span>
+          </div>
+        </div>
+        <div class="car-footer">
+          <span class="car-dealer">Julio's Used Cars</span>
+          <button class="car-contact">Contact</button>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-img" style="background:linear-gradient(135deg,#1a1a2a 0%,#2d3a6a 100%)">
+          <svg class="car-silhouette" width="210" height="90" viewBox="0 0 240 90" fill="white"><path d="M10 62 L18 34 Q26 16 55 13 L120 11 Q150 11 170 18 L205 38 L218 62 L222 62 L222 70 L5 70 L5 62 Z M52 13 L82 13 L80 36 L48 36 Z M125 11 L170 14 L180 36 L122 36 Z"/><circle cx="52" cy="70" r="13"/><circle cx="180" cy="70" r="13"/></svg>
+          <div class="car-badge">Used</div>
+        </div>
+        <div class="car-info">
+          <div class="car-price">$16,500</div>
+          <div class="car-name">2020 Ford F-150 XL</div>
+          <div class="car-specs">
+            <span class="car-spec">&#128337; 44,800 mi</span>
+            <span class="car-spec">&#9881;&#65039; Automatic</span>
+            <span class="car-spec">&#127959; Gray</span>
+          </div>
+        </div>
+        <div class="car-footer">
+          <span class="car-dealer">EZ Used Cars Inc.</span>
+          <button class="car-contact">Contact</button>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-img" style="background:linear-gradient(135deg,#1f2a1a 0%,#3a5a2d 100%)">
+          <svg class="car-silhouette" width="185" height="80" viewBox="0 0 210 80" fill="white"><path d="M25 55 L32 30 Q38 14 62 11 L115 11 Q142 11 158 22 L185 40 L195 55 L200 55 L200 63 L18 63 L18 55 Z M58 11 L85 11 L82 32 L52 32 Z M118 11 L158 14 L165 32 L115 32 Z"/><circle cx="52" cy="63" r="12"/><circle cx="162" cy="63" r="12"/></svg>
+          <div class="car-badge new">New</div>
+        </div>
+        <div class="car-info">
+          <div class="car-price">$7,200</div>
+          <div class="car-name">2016 Chevrolet Malibu LT</div>
+          <div class="car-specs">
+            <span class="car-spec">&#128337; 92,300 mi</span>
+            <span class="car-spec">&#9881;&#65039; Automatic</span>
+            <span class="car-spec">&#127959; Blue</span>
+          </div>
+        </div>
+        <div class="car-footer">
+          <span class="car-dealer">J &amp; H Auto Sales</span>
+          <button class="car-contact">Contact</button>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-img" style="background:linear-gradient(135deg,#2a1f1a 0%,#6a4a2d 100%)">
+          <svg class="car-silhouette" width="200" height="85" viewBox="0 0 225 85" fill="white"><path d="M18 58 L26 32 Q33 15 60 12 L112 10 Q142 10 162 20 L195 42 L208 58 L212 58 L212 66 L12 66 L12 58 Z M56 12 L86 12 L84 34 L50 34 Z M118 10 L162 13 L172 34 L115 34 Z"/><circle cx="52" cy="66" r="13"/><circle cx="170" cy="66" r="13"/></svg>
+          <div class="car-badge">Used</div>
+        </div>
+        <div class="car-info">
+          <div class="car-price">$19,800</div>
+          <div class="car-name">2021 Jeep Grand Cherokee</div>
+          <div class="car-specs">
+            <span class="car-spec">&#128337; 31,500 mi</span>
+            <span class="car-spec">&#9881;&#65039; Automatic</span>
+            <span class="car-spec">&#127959; Red</span>
+          </div>
+        </div>
+        <div class="car-footer">
+          <span class="car-dealer">CL Auto Sales Inc.</span>
+          <button class="car-contact">Contact</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="container">
+    <h2>Why Use RGV Autos?</h2>
+    <p class="sub">The only platform built specifically for the Rio Grande Valley car market.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">&#127968;</div>
+        <h3>100% Local</h3>
+        <p>Every listing is from a Brownsville or Valley dealer. No out-of-state bait listings.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">&#128269;</div>
+        <h3>One Search, All Lots</h3>
+        <p>Stop driving lot to lot. Browse every local dealer's inventory from your phone.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">&#11088;</div>
+        <h3>Verified Reviews</h3>
+        <p>Real ratings from real buyers. Know which dealers to trust before you go.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">&#128179;</div>
+        <h3>Payment Calculator</h3>
+        <p>Estimate your monthly payment on any listing before you ever step on the lot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALERS -->
+<section id="dealers" style="background:var(--gray)">
+  <div class="container">
+    <div class="section-header">
+      <h2>Local Dealerships</h2>
+      <a href="#">View all dealers &rarr;</a>
+    </div>
+    <div class="dealers-grid">
+
+      <div class="dealer-card">
+        <div class="dealer-head">
+          <div class="dealer-avatar">CL</div>
+          <div>
+            <div class="dealer-name">CL Auto Sales Inc.</div>
+            <div class="dealer-addr">7885 Southmost Rd, Brownsville</div>
+          </div>
+        </div>
+        <div class="dealer-stats">
+          <div class="d-stat"><span class="d-stat-num">34</span><span class="d-stat-label">Cars listed</span></div>
+          <div class="d-stat"><span class="d-stat-num">4.8 &#9733;</span><span class="d-stat-label">64 reviews</span></div>
+        </div>
+        <div class="dealer-badge verified">&#10003; Verified Dealer</div>
+      </div>
+
+      <div class="dealer-card">
+        <div class="dealer-head">
+          <div class="dealer-avatar" style="background:#1a4a6a">BAC</div>
+          <div>
+            <div class="dealer-name">Brownsville Auto Credit</div>
+            <div class="dealer-addr">1844 E Filmore St, Brownsville</div>
+          </div>
+        </div>
+        <div class="dealer-stats">
+          <div class="d-stat"><span class="d-stat-num">21</span><span class="d-stat-label">Cars listed</span></div>
+          <div class="d-stat"><span class="d-stat-num">4.8 &#9733;</span><span class="d-stat-label">44 reviews</span></div>
+        </div>
+        <div class="dealer-badge verified">&#10003; Verified Dealer</div>
+      </div>
+
+      <div class="dealer-card">
+        <div class="dealer-head">
+          <div class="dealer-avatar" style="background:#2d4a1a">JU</div>
+          <div>
+            <div class="dealer-name">Julio's Used Cars</div>
+            <div class="dealer-addr">5215 Southmost Rd, Brownsville</div>
+          </div>
+        </div>
+        <div class="dealer-stats">
+          <div class="d-stat"><span class="d-stat-num">18</span><span class="d-stat-label">Cars listed</span></div>
+          <div class="d-stat"><span class="d-stat-num">4.5 &#9733;</span><span class="d-stat-label">30 reviews</span></div>
+        </div>
+        <div class="dealer-badge trial">Free Trial</div>
+      </div>
+
+      <div class="dealer-card">
+        <div class="dealer-head">
+          <div class="dealer-avatar" style="background:#4a1a1a">EZ</div>
+          <div>
+            <div class="dealer-name">EZ Used Cars Inc.</div>
+            <div class="dealer-addr">1711 N Frontage Rd, Brownsville</div>
+          </div>
+        </div>
+        <div class="dealer-stats">
+          <div class="d-stat"><span class="d-stat-num">27</span><span class="d-stat-label">Cars listed</span></div>
+          <div class="d-stat"><span class="d-stat-num">4.0 &#9733;</span><span class="d-stat-label">63 reviews</span></div>
+        </div>
+        <div class="dealer-badge trial">Free Trial</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NOTIFY -->
+<div class="notify">
+  <h2>Get Notified When Your Car Arrives</h2>
+  <p>Set your criteria and we'll text you the moment a matching car is listed locally.</p>
+  <div class="notify-form">
+    <input type="email" placeholder="Enter your email address"/>
+    <button>Notify Me</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>RGVAutos.com</strong>
+  <div class="footer-links">
+    <a href="#">Browse Cars</a>
+    <a href="#">Dealers</a>
+    <a href="#">List Your Lot</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+  <p>&copy; 2025 RGV Autos &mdash; Brownsville, Texas &mdash; All rights reserved</p>
+  <p style="margin-top:.5rem;font-size:.75rem">This platform is independently operated and not affiliated with any individual dealership.</p>
+</footer>
+
+</body>
+</html>
